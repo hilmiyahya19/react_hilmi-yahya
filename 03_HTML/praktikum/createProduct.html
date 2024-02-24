@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Create Product</title>
+</head>
+<body>
+    <h1>Creat Product</h1>
+    <h2>Detail Product</h2>
+    <form action="">
+        <label for="productname">Product name:</label><br>
+        <input type="text" id="productname" name="productname" maxlength="50" minlength="6" required><br>
+        <label for="productcategory">Product Category:</label><br>
+        <select id="productcategory" name="productcategory" required>
+        <option value=""></option>
+        <option value="category1">Kategori 1</option>
+        <option value="category2">Kategori 2</option>
+        <option value="category3">Kategori 3</option>
+        </select><br>
+
+        <p>Product Freshness :</p>
+        <label for="brandnew"><input type="radio" id="brandnew" name="brandnew" required>Brand New</label><br>
+        <label for="secondhank"><input type="radio" id="secondhank" name="secondhank" required>Second Hank</label><br>
+        <label for="refurbished"><input type="radio" id="refurbished" name="refurbished" required>Refurbished</label><br>
+
+        <p>Image of Product <button>Choose File</button> No file chosen</p>
+        Additional Description 
+        <br>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <br>
+        Product Price :
+        <br>
+        <div style="border: 1px solid black; padding: 10px; width: 30px; height: 15px;">
+        $100
+        </div>         
+        <br>
+        <input type="submit">
+      </form>
+</body>
+</html>
