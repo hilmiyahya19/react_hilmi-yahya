@@ -10,8 +10,8 @@ HTML (HyperText Markup Language) adalah sebuah standar yang digunakan secara lua
 - Mempublikasikan halaman website secara online
 
 # Dokumentasi HTML 
-- <! DOCTYPE html> mendefinisikan dokumen ini sebagai HTML 5
-- <html> elemen root dari halaman HTML
-- <head> berisi informasi meta tentang dokumen  
-- <title> menentukan judul untuk dokumen 
-- <body> berisi konten halaman yang terlihat
+- <! DOCTYPE html> tag doctype html => mendefinisikan dokumen ini sebagai HTML 5
+- <html> tag html => elemen root dari halaman HTML
+- <head> tag head => berisi informasi meta tentang dokumen  
+- <title> tag title => menentukan judul untuk dokumen 
+- <body> tag body => berisi konten halaman yang terlihat
