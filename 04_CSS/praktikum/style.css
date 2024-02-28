@@ -17,6 +17,68 @@ body {
     font-family: Arial, sans-serif;
 }
 
+/* header */
+
+header{
+    background-color: white;
+    padding: 10px 20px; /* horizontal: 10px dan vertical: 20px */
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-left{
+    align-items: center;
+    display: flex;
+}
+
+.header-right{
+    align-items: center;
+    display: flex;
+}
+
+
+.header-left p{
+    color: rgb(28, 28, 28);
+}
+
+.header-right a{
+    float: left;
+    color: rgb(0, 106, 255);
+    text-decoration: none;
+    margin: 0px 10px;
+}
+
+
+.header-right .icon{
+    display: none;
+}
+
+.active{
+    background-color: rgb(0, 106, 255);
+    color: white !important;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+@media (max-width: 576px){
+    .header-right.responsive{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 50px;
+    }
+
+    .header-right.responsive .icon{
+        float: right;
+        display: block;
+    }
+
+    .header-right.responsive a{
+        float: none;
+        display: none;
+    }
+}
+
 /* section1 */
 
 .section1 {
