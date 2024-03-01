@@ -148,6 +148,7 @@ header{
 .section2 {
     /* height: 239px; */
     background-color: #F3F5FA;
+    padding-bottom: 40px;
 }
 .content2 {
     display: flex;
