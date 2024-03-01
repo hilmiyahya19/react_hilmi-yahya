@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animation</title>
+<style>
+    @keyframes changeShape {
+        0% {
+            border-radius: 0%;
+            background-color: #ff6666;
+        }
+        50% {
+            border-radius: 50%;
+            background-color: #66ccff;
+        }
+        100% {
+            border-radius: 0%;
+            background-color: #ff6666;
+        }
+    }
+
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: #ff6666;
+        border: 2px solid black;
+        animation: changeShape 3s infinite;
+    }
+</style>
+</head>
+<body>
+
+<div class="box"></div>
+
+</body>
+</html>
