@@ -60,30 +60,10 @@ header{
     border-radius: 5px;
 }
 
-@media (max-width: 576px){
-    .header-right.responsive{
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        top: 50px;
-    }
-
-    .header-right.responsive .icon{
-        float: right;
-        display: block;
-    }
-
-    .header-right.responsive a{
-        float: none;
-        display: none;
-    }
-}
-
 /* section1 */
 
 .section1 {
     display: flex;
-    /* height: 760px; */
     background-color: #37517E;
 }
 
@@ -146,7 +126,6 @@ header{
 /* section 2 */
 
 .section2 {
-    /* height: 239px; */
     background-color: #F3F5FA;
     padding-bottom: 40px;
 }
@@ -194,7 +173,6 @@ header{
 /* section 3 */
 
 .section3 {
-    /* height: 339px; */
     padding: 60px 80px 30px 80px;
   }
   
@@ -242,7 +220,6 @@ header{
 /* section 4 */
 
 .section4 {
-    /* height: 81px; */
     background-color: #37517E;
 }
 
@@ -263,4 +240,141 @@ header{
     color: white;
     margin-left: 350px;
 }
+
+/* responsif */
+
+
+/* Untuk layar dengan lebar maksimum 768px (tablet) */
+@media only screen and (max-width: 768px) {
+
+    /* penyesuaian untuk header */
+    .header-right.responsive {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+    }
+    .header-right.responsive.active {
+        display: flex;
+    }
+    .header-right.responsive a {
+        margin: 10px 0;
+    }
+
+    /* Penyesuaian untuk section 1 */
+    .section1 {
+        flex-direction: column;
+    }
+    .left-column, .right-column {
+        margin: 20px;
+    }
+    .content1 {
+        margin-top: 50px;
+        text-align: center;
+    }
+    .button-group1 {
+        flex-direction: column;
+    }
+    .button1 {
+        margin: 10px auto;
+    }
+    .right-column {
+        margin-top: 50px;
+    }
+
+    /* Penyesuaian untuk section 2 */
+    .content2 h1, .content2 p {
+        text-align: center;
+    }
+    .subscribe-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .subscribe-container input[type="text"] {
+        width: 100%;
+        border-radius: 20px;
+        margin-bottom: 10px;
+    }
+    .subscribe-container button[type="submit"] {
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    /* Penyesuaian untuk section 3 */
+    .content3 {
+        flex-direction: column;
+        align-items: center;
+    }
+    .col-3 {
+        flex: 1;
+        padding: 10px 0;
+        text-align: center;
+    }
+    .container-circle {
+        justify-content: center;
+    }
+
+    /* Penyesuaian untuk section 4 */
+    .content4 {
+        flex-direction: column;
+        align-items: center;
+    }
+    .col-6 {
+        flex: 1;
+        padding: 15px 0;
+        text-align: center;
+    }
+    .content4 .p-1, .content4 .p-2 {
+        margin-left: 0;
+    }
+    
+}
+
+/* Untuk layar dengan lebar maksimum 480px (mobile) */
+@media only screen and (max-width: 480px) {
+
+    /* penyesuaian untuk header */
+    .header-left p {
+        font-size: 16px;
+    }
+    .header-right a {
+        font-size: 16px;
+        margin: 5px 0;
+    }
+    .active {
+        padding: 8px;
+    }
+
+    /* Penyesuaian untuk section 1 */
+    .left-column, .right-column {
+        margin: 10px;
+    }
+    .content1 {
+        margin-top: 30px;
+    }
+    .button1 {
+        width: 100%;
+    }
+
+    /* Penyesuaian untuk section 2 */
+    .content2 h1, .content2 p {
+        text-align: center;
+    }
+    .subscribe-container input[type="text"], .subscribe-container button[type="submit"] {
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    /* Penyesuaian untuk section 3 */
+    .col-3 {
+        padding: 10px 0;
+        text-align: center;
+    }
+    
+    /* Penyesuaian untuk section 4 */
+    .col-6 {
+        padding: 15px 0;
+        text-align: center;
+    }
+}
+
 
