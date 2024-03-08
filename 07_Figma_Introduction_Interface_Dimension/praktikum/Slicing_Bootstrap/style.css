@@ -9,6 +9,9 @@ img {
     width: auto;
 }
 
+header {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Menambahkan bayangan */
+}
 
 /* CSS untuk menyesuaikan tampilan tombol */
 .custom-file-input::-webkit-file-upload-button {

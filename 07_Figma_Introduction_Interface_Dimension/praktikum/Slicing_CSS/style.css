@@ -60,6 +60,10 @@ header{
     border-radius: 5px;
 }
 
+header p{
+    font-weight: bold;
+}
+
 /* section1 */
 
 .section1 {
