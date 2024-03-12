@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let form = document.querySelector('form');
 
     form.addEventListener('submit', function (event) {
-        event.preventDefault(); // Mencegah form untuk melakukan submit secara otomatis
-
+        event.preventDefault();
+        
         const inputs = form.querySelectorAll('input, textarea, select');
 
         let isValid = true;
@@ -97,20 +97,20 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!isValid) {
             document.getElementById('errorAlert').style.display = 'block';
             document.getElementById('successAlert').style.display = 'none';
-
+            console.log(isValid);
             setTimeout(function () {
                 document.getElementById('errorAlert').style.display = 'none';
             }, 1000);
         } else {
             document.getElementById('errorAlert').style.display = 'none';
             document.getElementById('successAlert').style.display = 'block';
-
-            setTimeout(function () {
-                document.getElementById('successAlert').style.display = 'none';
-                setTimeout(function () {
-                    window.location.reload();
-                }, 500);
-            }, 500);
+            console.log(isValid);
+            // setTimeout(function () {
+            //     document.getElementById('successAlert').style.display = 'none';
+            //     setTimeout(function () {
+            //         window.location.reload();
+            //     }, 1000);
+            // }, 1000);
         }
     });
 
@@ -120,7 +120,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Panggil submit form hanya jika sudah dikonfirmasi
         if (isConfirmed) {
+            // console.log(isValid);
             form.submit(); // Kirim formulir setelah konfirmasi
+            // event.preventDefault(); // Mencegah form untuk melakukan submit secara otomatis
         }
     });
 });
