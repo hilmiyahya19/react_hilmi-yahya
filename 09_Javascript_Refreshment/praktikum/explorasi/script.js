@@ -11,12 +11,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let isValid = true;
 
-        // Tugas Javascript Refreshment
+        // Product Name
         const productNameInput = document.getElementById('productName');
         const productName = productNameInput.value;
 
-        const productPriceInput = document.getElementById('productPrice');
-        const productPrice = productPriceInput.value;
+        const regex = /[!@#$%^&*(),.?":{}|<>]/; // Ekspresi reguler untuk mencocokkan karakter khusus
 
         if (productName.length === 0) {
             isValid = false;
@@ -30,11 +29,21 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(function () {
                 document.getElementById('errorAlertProductName25').style.display = 'none';
             }, 1000); // Menunda penutupan alert selama 1 detik
+        } else if (regex.test(productName)) { // Menguji apakah productName mengandung karakter khusus
+            isValid = false;
+            document.getElementById('errorAlertProductNameRegex').style.display = 'block';
+            setTimeout(function () {
+                document.getElementById('errorAlertProductNameRegex').style.display = 'none';
+            }, 1000); // Menunda penutupan alert selama 1 detik
         } else {
             document.getElementById('errorAlertProductName0').style.display = 'none';
             document.getElementById('errorAlertProductName25').style.display = 'none';
         }
-        
+
+        //Product Price
+        const productPriceInput = document.getElementById('productPrice');
+        const productPrice = productPriceInput.value;
+
         if (productPrice.length === 0) {
             isValid = false;
             document.getElementById('errorAlertProductPrice0').style.display = 'block';
@@ -43,6 +52,34 @@ document.addEventListener('DOMContentLoaded', function () {
             }, 1000); // Menunda penutupan alert selama 1 detik
         } else {
             document.getElementById('errorAlertProductPrice0').style.display = 'none';
+        }
+
+        // Product Image
+        const productImageInput = document.getElementById('productImage');
+        const productImage = productImageInput.files[0]; 
+      
+        if (!productImage) {
+            isValid = false;
+            document.getElementById('errorAlertProductImage0').style.display = 'block';
+            setTimeout(function () {
+                document.getElementById('errorAlertProductImage0').style.display = 'none';
+            }, 1000); // Menunda penutupan alert selama 1 detik
+        } else {
+            document.getElementById('errorAlertProductImage0').style.display = 'none';
+        }
+
+        // Additional Description
+        const additionalDescriptionInput = document.getElementById('additionalDescription');
+        const additionalDescription = additionalDescriptionInput.value;
+
+        if (additionalDescription.length === 0) {
+            isValid = false;
+            document.getElementById('errorAlertAdditionalDescription0').style.display = 'block';
+            setTimeout(function () {
+                document.getElementById('errorAlertAdditionalDescription0').style.display = 'none';
+            }, 1000); // Menunda penutupan alert selama 1 detik
+        } else {
+            document.getElementById('errorAlertAdditionalDescription0').style.display = 'none';
         }
         
         inputs.forEach(function (input) {
