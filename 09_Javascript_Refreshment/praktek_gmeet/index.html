@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Tabel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Form Barang</h2>
+        <form id="barangForm">
+            <label for="nama">Nama Barang:</label><br>
+            <input type="text" id="nama" name="nama"><br>
+            <label for="harga">Harga Barang:</label><br>
+            <input type="text" id="harga" name="harga"><br><br>
+            <button type="button" onclick="tambahBarang()">Tambah Barang</button>
+        </form>
+
+        <table id="tabelBarang">
+            <tr>
+                <th>Nama Barang</th>
+                <th>Harga Barang</th>
+            </tr>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
