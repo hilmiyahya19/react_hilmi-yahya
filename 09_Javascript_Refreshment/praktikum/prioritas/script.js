@@ -3,6 +3,7 @@ let isConfirmed = false;
 
 document.addEventListener('DOMContentLoaded', function () {
     let form = document.querySelector('form');
+    let isValid = false; // Tambahkan variabel isValid
 
     form.addEventListener('submit', function (event) {
         event.preventDefault();
