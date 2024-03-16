@@ -66,3 +66,24 @@
     border-color: #c3e6cb; /* Warna border hijau untuk alert sukses */
     color: #155724; /* Warna teks hijau untuk alert sukses */
   }
+
+th {
+    font-weight: 600;
+}
+
+.search-section {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.btn-blue {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-blue:hover {
+  color: white;
+    background-color: rgb(16, 84, 179);
+}

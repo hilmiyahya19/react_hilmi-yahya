@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
             setTimeout(function () {
                 document.getElementById('successAlert').style.display = 'none';
                 setTimeout(function () {
-                    window.location.reload();
+                    // window.location.reload();
                 }, 500);
             }, 500);
         }
@@ -125,3 +125,56 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+document.getElementById("tabelProduct").style.display = "";
+        let currentNo = 1;
+
+        function tambahProduct() {
+            let productName = document.getElementById("productName").value;
+            let productCategory = document.getElementById("productCategory").value;
+            let productImage = document.getElementById("productImage").value;
+            let productFreshness = document.getElementById("productFreshness").value;
+            let additionalDescription = document.getElementById("additionalDescription").value;
+            let productPrice = document.getElementById("productPrice").value;
+
+            let table = document.getElementById("tabelProduct");
+            let row = table.insertRow(-1);
+            let cell1 = row.insertCell(0);
+            let cell2 = row.insertCell(1);
+            let cell3 = row.insertCell(2);
+            let cell4 = row.insertCell(3);
+            let cell5 = row.insertCell(4);
+            let cell6 = row.insertCell(5);
+            let cell7 = row.insertCell(6);
+
+            cell1.innerHTML = currentNo++;
+            cell2.innerHTML = productName;
+            cell3.innerHTML = productCategory;
+            cell4.innerHTML = productImage;
+            cell5.innerHTML = productFreshness;
+            cell6.innerHTML = additionalDescription;
+            cell7.innerHTML = productPrice;
+
+            table.style.display = "table";
+
+            document.getElementById("productName").value = "";
+            document.getElementById("productCategory").value = "";
+            document.getElementById("productImage").value = "";
+            document.getElementById("productFreshness").value = "";
+            document.getElementById("additionalDescription").value = "";
+            document.getElementById("productPrice").value = "";
+        }
+
+let productCategory = ''; // Variabel untuk menyimpan kategori produk
+let productFreshness = ''; // Variabel untuk menyimpan kesegaran produk
+
+// Fungsi untuk memilih kategori produk
+function selectCategory(category) {
+    document.getElementById('dropdownMenuButton').innerText = category;
+    productCategory = category; // Simpan nilai kategori yang dipilih
+}
+
+// Fungsi untuk memilih kesegaran produk
+function selectFreshness(freshness) {
+    productFreshness = freshness; // Simpan nilai kesegaran yang dipilih
+}

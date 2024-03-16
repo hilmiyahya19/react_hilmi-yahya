@@ -72,13 +72,20 @@
             <p class="mt-5">Product Category</p>
             <div>
                 <div class="dropdown">
-                <button class="btn btn-white dropdown-toggle border border-black" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-white dropdown-toggle border border-black" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownMenuButton">
                     Choose...
                 </button>
+                <input type="hidden" id="productCategory" name="productCategory" value="">
                 <ul class="dropdown-menu border border-black">
-                    <li><a class="dropdown-item" href="#">Clothing and Accessories</a></li>
-                    <li><a class="dropdown-item" href="#">Electronics and Technology</a></li>
-                    <li><a class="dropdown-item" href="#">Health and Beauty</a></li>
+                    <li>
+                        <a class="dropdown-item" href="#" onclick="selectCategory('Clothing and Accessories')">Clothing and Accessories</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#" onclick="selectCategory('Electronics and Technology')">Electronics and Technology</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#" onclick="selectCategory('Health and Beauty')">Health and Beauty</a>
+                    </li>
                 </ul>
                 </div>
             </div>
@@ -97,23 +104,22 @@
             <!-- Product Freshness -->
             <p class="mt-5">Product Freshness</p>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
-                Brand New
+                <input class="form-check-input" type="radio" name="productFreshness" id="productFreshness" onclick="selectFreshness('Brand New')">
+                <label class="form-check-label" for="productFreshness">
+                    Brand New
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                <label class="form-check-label" for="flexRadioDefault2">
-                Second hand
+                <input class="form-check-input" type="radio" name="productFreshness" id="productFreshness" checked onclick="selectFreshness('Second hand')">
+                <label class="form-check-label" for="productFreshness">
+                    Second hand
                 </label>
-            </div>
+                </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
-                <label class="form-check-label" for="flexRadioDefault3">
-                Refufbished
+                <input class="form-check-input" type="radio" name="productFreshness" id="productFreshness" checked onclick="selectFreshness('Refurbished')">
+                <label class="form-check-label" for="productFreshness">
+                    Refurbished
                 </label>
-            </div>
             </div>
         </section>
     
@@ -192,7 +198,9 @@
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <button id="submitModal" type="submit" class="btn btn-primary">Ya, Submit</button>
+                    <button id="submitModal" type="submit" class="btn btn-primary" onclick="tambahProduct()">
+                        Ya, Submit
+                    </button>
                     </div>
                 </div>
                 </div>
@@ -200,6 +208,41 @@
             </div>
             <div class="col-4"></div>
         </div>
+        </section>
+
+        <section>
+            <div class="row text-center mb-5">
+            <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
+            <div class="col-10 col-sm-10 col-md-10 col-lg-10">
+                <h2 class="mb-4">List Product</h2>
+                    <table id="tabelProduct" class="table table-bordered">
+                        <tr>
+                            <th>No</th>
+                            <th>Product Name</th>
+                            <th>Product Category</th>
+                            <th>Image of Prodcut</th>
+                            <th>Product Freshness</th>
+                            <th>Additional Description</th>
+                            <th>Product Price</th>
+                        </tr>
+                    </table>
+                    <div class="row">
+                        <div class="col-1 col-sm-1 col-md-2 col-lg-3"></div>
+                        <div class="col-10 col-sm-10 col-md-8 col-lg-6 search-section">
+                        <label for="searchInput" class="form-label">Search by Name</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="searchInput" placeholder="Enter product name">
+                        </div>
+                        <div class="mt-2">
+                            <button class="btn btn-blue" type="button">Delete</button>
+                            <button class="btn btn-blue" type="button">Search</button>
+                        </div>
+                        </div>
+                        <div class="col-1 col-sm-1 col-md-2 col-lg-3"></div>
+                    </div>
+            </div>
+            <div class="col-1 col-sm-1 col-md-1 col-lg-1"></div>
+            </div>
         </section>
         
     </form>
