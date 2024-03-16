@@ -30,6 +30,6 @@ Seberapa banyak langkah atau steps yang diperlukan (bukan waktu yang dibutuhkan)
 
 # Kesimpulan
 - Menganalisa jumlah steps adalah sangat penting untuk mengetahui performa dari sebuah data structure di suatu aplikasi
-- reading, searching, dan deletion pada arrat dan set memiliki efisiensi yang sama yaitu secara berurutan 1 steps, N steps, dan N steps. Terdapat perbedaan pada operasi insertion, dimana skenario terbaik pada arrat yaitu 1 steps sedangkan pada set yaitu N + 1 steps
+- reading, searching, dan deletion pada array dan set memiliki efisiensi yang sama yaitu secara berurutan 1 steps, N steps, dan N steps. Terdapat perbedaan pada operasi insertion, dimana skenario terbaik pada arrat yaitu 1 steps sedangkan pada set yaitu N + 1 steps
 - Set penting jika kita menginginkan data structure yang terbebas dari duplikasi walaupun lebih lambat dari array pada operasi insertion nya
 - Namum jika tidak membutuhkan pemeriksaan duplikasi, menggunakan array lebih disarankan
