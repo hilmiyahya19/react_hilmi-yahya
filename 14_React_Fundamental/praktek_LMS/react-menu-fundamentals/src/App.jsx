@@ -1,33 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from 'react';
 import './App.css'
+import List from './components/List/List';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const foods = [
+    {id: 1, name:"Nasi Goreng", description:"nasi yang digoreng", price:25000},
+    {id: 2, name:"Ayam Goreng", description:"ayam yang digoreng", price:35000},
+    {id: 3, name:"Roti Bakar", description:"roti yang dibakar", price:15000},
+  ];
+  const drinks = [
+    {id: 4, name:"STMJ", description:"susu telur madu jahe", price:10000},
+    {id: 5, name:"Kopi Susu", description:"kopi plus susu", price:5000},
+    {id: 6, name:"Teh Tawar", description:"gak ada gulanya kok", price:3000},
+  ];
+
+  const [title, setTitle] = useState("Foods");
+  const [items, setItems] = useState(foods);
+  const [clicked, setClicked] = useState(false);
+
+  const toggleMenu = () => {
+    setClicked(!clicked);
+    if (clicked){
+      setTitle("Drinks");
+      setItems(drinks);
+    } else {
+      setTitle("Foods");
+      setItems(foods);
+    }
+
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <List title={title} items={items}/> 
+      <button onClick={toggleMenu}>Toggle</button>
+      {/* title="drinks" items={drinks} */}
     </>
   )
 }
