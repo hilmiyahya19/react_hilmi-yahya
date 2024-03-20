@@ -2,37 +2,42 @@ import { useState } from 'react';
 import tailwind from '/src/assets/tailwind.png'
 
 function CreateProduct() {
-//   const [productName, setProductName] = useState('');
-//   const [productCategory, setProductCategory] = useState('');
-//   const [productImage, setProductImage] = useState('');
-//   const [productFreshness, setProductFreshness] = useState('');
 
-//   const selectCategory = (category) => {
-//     setProductCategory(category);
-//   };
+    // Product Name
+    const [productName, setProductName] = useState('');
 
-//   const selectFreshness = (freshness) => {
-//     setProductFreshness(freshness);
-//   };
+    const handleInputChange = (event) => {
+        setProductName(event.target.value);
+    };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Your form submission logic here
-  };
+    // Product Category
+    const [productCategory, setProductCategory] = useState('');
+      
+    const handleCategoryChange = (event) => {
+        setProductCategory(event.target.value);
+        // Tambahkan logika lain yang Anda perlukan di sini
+    };
+   
+    // Product Image
+    const [productImage, setProductImage] = useState(null);
 
-  const [productName, setProductName] = useState('');
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        setProductImage(file);
+    };
 
-  const handleInputChange = (event) => {
-    setProductName(event.target.value);
-  };
+    // Product Freshness
 
-  const [productImage, setProductImage] = useState(null);
+    // Additional Description
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setProductImage(file);
-  };
-
+    // Product Price
+ 
+    // Submit
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        // Your form submission logic here
+      };
+    
   return (
     <>
         <section className="mt-5 mx-5 sm:mx-5 md:mx-5 lg:mx-0">
@@ -53,23 +58,23 @@ function CreateProduct() {
                     <div>
                         <h2 className="text-lg font-semibold">Detail Product</h2>
                         <div className="mt-2">
-                            <label htmlFor="productName" className="block">Product name</label>
+                            <h3 htmlFor="productName" className="block">Product name</h3>
                             <input id="productName" type="text" className="form-input mt-1 block w-full border rounded-md" value={productName} onChange={handleInputChange}/>
                         </div>
                         <div className="mt-4">
-                            <label htmlFor="productCategory" className="block">Product Category</label>
-                            <select id="productCategory" className="form-select mt-1 block w-full border rounded-md">
-                                <option>Clothing and Accessories</option>
-                                <option>Electronics and Technology</option>
-                                <option>Health and Beauty</option>
+                            <h3 htmlFor="productCategory" className="block">Product Category</h3>
+                            <select id="productCategory" className="form-select mt-1 block w-full border rounded-md" value={productCategory} onChange={handleCategoryChange}>
+                                <option value="Clothing and Accessories">Clothing and Accessories</option>
+                                <option value="Electronics and Technology">Electronics and Technology</option>
+                                <option value="Health and Beauty">Health and Beauty</option>
                             </select>
                         </div>
                         <div className="mt-4">
-                            <label htmlFor="productImage" className="block">Image of Product</label>
+                            <h3 htmlFor="productImage" className="block">Image of Product</h3>
                             <input id="productImage" type="file" className="form-input mt-1 block w-full" value={productImage} onChange={handleFileChange}/>
                         </div>
                         <div className="mt-4">
-                            <label className="block">Product Freshness</label>
+                            <h3 className="block">Product Freshness</h3>
                             <div className="mt-2">
                                 <label htmlFor="brandNew" className="inline-flex items-center">
                                     <input id="brandNew" type="radio" className="form-radio" name="freshness" value="brand-new"/>
@@ -95,11 +100,11 @@ function CreateProduct() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mx-5 sm:mx-5 md:mx-5 lg:mx-0">
                     <div>
                         <div className="mt-2">
-                            <label htmlFor="additionalDescription" className="block">Additional Description</label>
+                            <h3 htmlFor="additionalDescription" className="block">Additional Description</h3>
                             <textarea id="additionalDescription" className="form-textarea mt-1 block w-full h-24 border rounded-md"></textarea>
                         </div>
                         <div className="mt-4">
-                            <label htmlFor="productPrice" className="block">Product Price</label>
+                            <h3 htmlFor="productPrice" className="block">Product Price</h3>
                             <input id="productPrice" type="text" className="form-input mt-1 block w-full border rounded-md"/>
                         </div>
                     </div>            
