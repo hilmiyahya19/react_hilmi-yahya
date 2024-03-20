@@ -77,10 +77,10 @@ Key membantu React  untuk mengidentifikasi item mana yang telah diubah, ditambah
 # Materi - Directory structure
 ## Struktur Direktori
 React tidak memiliki pendapat (unopinionated) tentang bagaimana cara memasukkan file ke folder
-*Pengelompokan berdasarkan fitur atau rute*
-*Pengelompokan berdasarkan jenis file*
-*Hindaro terlalu banyak nesting*
-*Jangan terlalu memikirkannya*
+- Pengelompokan berdasarkan fitur atau rute
+- Pengelompokan berdasarkan jenis file
+- Hindari terlalu banyak nesting
+- Jangan terlalu memikirkannya
 
 # Materi - Styling Inline
 - Classes dan CSS
