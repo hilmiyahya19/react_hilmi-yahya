@@ -1,7 +1,9 @@
 
 function AboutMe() {
   return (
-    <div>AboutMe</div>
+    <div>
+      <h1 className="text-6xl text-center">About</h1>
+    </div>
   )
 }
 

@@ -1,6 +1,8 @@
 function Feature() {
   return (
-    <div>Feature</div>
+    <div>
+      <h1 className="text-6xl text-center">Feature</h1>
+    </div>
   )
 }
 

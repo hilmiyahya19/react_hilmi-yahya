@@ -20,7 +20,8 @@ function Navbar() {
                             to="/features">Features</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-primary font-semibold hover:text-blue-800" 
+                            <Link className="nav-link text-primary font-semibold hover:text-blue-800"
+                            activeClassName="active" 
                             to="/pricing">Pricing</Link>
                         </li>
                         <li className="nav-item">

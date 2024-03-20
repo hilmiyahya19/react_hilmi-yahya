@@ -3,9 +3,9 @@ import Price from "../components/Price/Price"
 function Pricing() {
   return (
     <div>
-        <Price/>
+      <Price/>
     </div>
   )
 }
 
-export default Pricing;
+export default Pricing
