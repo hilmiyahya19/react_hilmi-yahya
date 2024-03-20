@@ -9,6 +9,7 @@ const StyledButton = styled.button`
   border-radius: 5px; /* Sudut bulat */
   cursor: pointer; /* Pointer ketika diarahkan */
   transition: background-color 0.3s ease; /* Transisi warna latar belakang */
+  margin-bottom: 20px;
   
   /* Gaya saat tombol dihover */
   &:hover {

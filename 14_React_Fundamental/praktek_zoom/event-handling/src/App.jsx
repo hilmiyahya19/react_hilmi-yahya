@@ -1,7 +1,7 @@
 import StyledButton from "./components/Button/Button.styled";
 import Navbar from "./components/Navbar/Navbar";
-// import style from "./assets/module.css";
 import style from "./assets/css/style.module.css"
+import MouseBox from "./components/MouseBox/MouseBox";
 
 function App() {
   let klik = "indonesia"; // Mendefinisikan variabel 'klik' dengan nilai 'indonesia'
@@ -23,14 +23,20 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault(); // Mencegah perilaku default dari form
     console.log('Form submitted'); // Menampilkan pesan ke console saat form disubmit
-    // Di sini bisa ditambahkan logika untuk mengirim data ke server atau melakukan operasi lainnya
-  };
+  }; 
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    console.log('button');
+  }
 
   return (
     <>
       <h1>Halaman App</h1> {/* Judul halaman */}
-      <p className={style["red-text"]}>Hero Section</p>
-      <p className={style["red-blue"]}>paragraf</p>
+      <div className="hero-section">
+        <p className={style["blue-text"]}>Hero Section</p>
+      </div>
+      <p className={style["red-text"]}>paragraf</p>
       <Navbar nama="John" /> {/* Komponen Navbar dengan prop 'nama' bernilai 'John' */}
       <h2>Members:</h2> {/* Subjudul untuk daftar anggota */}
       <ul>
@@ -51,8 +57,10 @@ function App() {
           onChange={(event) => handlePasswordChange(event)} // Event onChange dengan arrow function
         />
         {/* Button submit */}
-        <button type="submit">Submit</button>
+        <StyledButton type="submit">Submit</StyledButton>
       </form>
+      <MouseBox/>
+      <StyledButton style={{ marginTop: '10px' }} type="button" onClick={handleClick}>button</StyledButton>
     </>
   );
 }
