@@ -6,36 +6,56 @@ function CreateProduct() {
     // Product Name
     const [productName, setProductName] = useState('');
 
-    const handleInputChange = (event) => {
+    const handleChangeProductName = (event) => {
         setProductName(event.target.value);
+        console.log(event.target.value); // tes
     };
 
     // Product Category
     const [productCategory, setProductCategory] = useState('');
       
-    const handleCategoryChange = (event) => {
+    const handleChangeProductCategory = (event) => {
         setProductCategory(event.target.value);
-        // Tambahkan logika lain yang Anda perlukan di sini
+        console.log(event.target.value); // tes
     };
    
     // Product Image
     const [productImage, setProductImage] = useState(null);
 
-    const handleFileChange = (event) => {
+    const handleChangeProductImage = (event) => {
         const file = event.target.files[0];
         setProductImage(file);
+
     };
 
     // Product Freshness
+    const [productFreshness, setProductFreshness] = useState("brand-new");
+
+    const handleChangeProductFreshness = (event) => {
+        setProductFreshness(event.target.value);
+        console.log(event.target.value); // tes
+    };
 
     // Additional Description
+    const [additionalDescription, setAdditionalDescription] = useState('');
+
+    const handleChangeAdditionalDescription = (event) => {
+        setAdditionalDescription(event.target.value);
+        console.log(event.target.value); // tes
+    };
 
     // Product Price
+    const [productPrice, setProductPrice] = useState('');
+
+    const handleChangeProductPrice = (event) => {
+        setProductPrice(event.target.value);
+        console.log(event.target.value); // tes
+    };
  
     // Submit
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Your form submission logic here
+        console.log('submit di klik'); // tes
       };
     
   return (
@@ -59,11 +79,11 @@ function CreateProduct() {
                         <h2 className="text-lg font-semibold">Detail Product</h2>
                         <div className="mt-2">
                             <h3 htmlFor="productName" className="block">Product name</h3>
-                            <input id="productName" type="text" className="form-input mt-1 block w-full border rounded-md" value={productName} onChange={handleInputChange}/>
+                            <input id="productName" type="text" className="form-input mt-1 block w-full border rounded-md" value={productName} onChange={handleChangeProductName}/>
                         </div>
                         <div className="mt-4">
                             <h3 htmlFor="productCategory" className="block">Product Category</h3>
-                            <select id="productCategory" className="form-select mt-1 block w-full border rounded-md" value={productCategory} onChange={handleCategoryChange}>
+                            <select id="productCategory" className="form-select mt-1 block w-full border rounded-md" value={productCategory} onChange={handleChangeProductCategory}>
                                 <option value="Clothing and Accessories">Clothing and Accessories</option>
                                 <option value="Electronics and Technology">Electronics and Technology</option>
                                 <option value="Health and Beauty">Health and Beauty</option>
@@ -71,21 +91,24 @@ function CreateProduct() {
                         </div>
                         <div className="mt-4">
                             <h3 htmlFor="productImage" className="block">Image of Product</h3>
-                            <input id="productImage" type="file" className="form-input mt-1 block w-full" value={productImage} onChange={handleFileChange}/>
+                            <input id="productImage" type="file" className="form-input mt-1 block w-full" value={productImage} onChange={handleChangeProductImage}/>
                         </div>
                         <div className="mt-4">
                             <h3 className="block">Product Freshness</h3>
                             <div className="mt-2">
                                 <label htmlFor="brandNew" className="inline-flex items-center">
-                                    <input id="brandNew" type="radio" className="form-radio" name="freshness" value="brand-new"/>
+                                    <input id="brandNew" type="radio" className="form-radio" name="freshness" value="brand-new" checked={productFreshness === "brand-new"} 
+                                    onChange={handleChangeProductFreshness}/>
                                     <span className="ml-2">Brand New</span>
                                 </label>
                                 <label htmlFor="secondHand" className="inline-flex items-center ml-6">
-                                    <input id="secondHand" type="radio" className="form-radio" name="freshness" value="second-hand"/>
+                                    <input id="secondHand" type="radio" className="form-radio" name="freshness" value="second-hand" checked={productFreshness === "second-hand"}
+                                    onChange={handleChangeProductFreshness}/>
                                     <span className="ml-2">Second hand</span>
                                 </label>
                                 <label htmlFor="refurbished" className="inline-flex items-center ml-6">
-                                    <input id="refurbished" type="radio" className="form-radio" name="freshness" value="refurbished"/>
+                                    <input id="refurbished" type="radio" className="form-radio" name="freshness" value="refurbished" checked={productFreshness === "refurbished"}
+                                    onChange={handleChangeProductFreshness}/>
                                     <span className="ml-2">Refurbished</span>
                                 </label>
                             </div>
@@ -101,11 +124,12 @@ function CreateProduct() {
                     <div>
                         <div className="mt-2">
                             <h3 htmlFor="additionalDescription" className="block">Additional Description</h3>
-                            <textarea id="additionalDescription" className="form-textarea mt-1 block w-full h-24 border rounded-md"></textarea>
+                            <textarea id="additionalDescription" className="form-textarea mt-1 block w-full h-24 border rounded-md" value={additionalDescription} 
+                            onChange={handleChangeAdditionalDescription}></textarea>
                         </div>
                         <div className="mt-4">
                             <h3 htmlFor="productPrice" className="block">Product Price</h3>
-                            <input id="productPrice" type="text" className="form-input mt-1 block w-full border rounded-md"/>
+                            <input id="productPrice" type="text" className="form-input mt-1 block w-full border rounded-md" value={productPrice} onChange={handleChangeProductPrice}/>
                         </div>
                     </div>            
                     </div>
