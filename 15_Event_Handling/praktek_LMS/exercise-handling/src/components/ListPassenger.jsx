@@ -1,21 +1,26 @@
 import ListItem from "./ListItem";
+import styles from "../assets/css/ListPassenger.module.css";
 
 function ListPassenger(props) {
     const {data, hapusPengunjung} = props
 
     return (
     <>
-        <table cellPadding="5px" cellSpacing="0" style={{margin: "auto"}}>
-            <thead bgcolor="red">
-                <td>Nama</td>
-                <td>Umur</td>
-                <td>Jenis Kelamain</td>
-            </thead>
-            <tbody>
-                {data.map((passenger) => <ListItem key={passenger.id} item={passenger} 
-                hapusPengunjung={hapusPengunjung} />)}
-            </tbody>
-        </table>
+        <div className={styles.tableWrapper}>
+            <table className={styles.passengerTable}>
+                <thead>
+                    <tr>
+                        <th>Nama</th>
+                        <th>Umur</th>
+                        <th>Jenis Kelamin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map((passenger) => <ListItem key={passenger.id} item={passenger} 
+                    hapusPengunjung={hapusPengunjung} />)}
+                </tbody>
+            </table>
+        </div>    
     </>
   )
 }

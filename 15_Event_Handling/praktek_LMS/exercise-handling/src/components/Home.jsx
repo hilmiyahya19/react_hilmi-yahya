@@ -11,25 +11,25 @@ class Home extends Component {
                 {
                     id: uuidv4(),
                     nama: 'Kiyotaka',
-                    umur: 16,
+                    umur: 21,
                     jenisKelamin: 'Pria'
                 },
                 {
                     id: uuidv4(),
                     nama: 'Suzune',
-                    umur: 16,
+                    umur: 21,
                     jenisKelamin: 'Wanita'
                 },
                 {
                     id: uuidv4(),
                     nama: 'Yagami',
-                    umur: 15,
+                    umur: 20,
                     jenisKelamin: 'Pria'
                 },
                 {
                     id: uuidv4(),
                     nama: 'Ichika',
-                    umur: 15,
+                    umur: 20,
                     jenisKelamin: 'Wanita'
                 },
             ]
@@ -49,10 +49,10 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
+            <>
                 <ListPassenger data={this.state.data} hapusPengunjung={this.hapusPengunjung} />
-                <PassengerInput/>
-            </div>
+                <PassengerInput tambahPengunjung={this.tambahPengunjung}/>
+            </>
         )
     }
 }
