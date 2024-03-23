@@ -196,7 +196,7 @@ function CreateProduct() {
                         </div>
                         <div className="mt-4">
                             <h3 htmlFor="productImage" className="block mb-2">Image of Product</h3>
-                            <input id="productImage" type="file" className="form-input mt-1 block w-full" value={productImage} onChange={handleChangeProductImage}/>
+                            <input id="productImage" type="file" className="form-input mt-1 block w-full" onChange={handleChangeProductImage}/>
                         </div>
                         <div className="mt-5">
                             <h3 className="block">Product Freshness</h3>
@@ -276,8 +276,8 @@ function CreateProduct() {
                             <tr key={product.productName}>
                                 <td className="border px-4 py-2">{product.productName}</td>
                                 <td className="border px-4 py-2">{product.productCategory}</td>
-                                <td className="border px-4 py-2">{product.productImage}</td>  
-                                {/* Image data to be displayed (replace with appropriate logic) */}
+                                <td className="border px-4 py-2">{product.productImage.name}</td>
+                               
                                 <td className="border px-4 py-2">{product.productFreshness}</td>
                                 <td className="border px-4 py-2">{product.additionalDescription}</td>
                                 <td className="border px-4 py-2">{product.productPrice}</td>
