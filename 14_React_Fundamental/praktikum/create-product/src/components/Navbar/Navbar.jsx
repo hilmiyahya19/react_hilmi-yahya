@@ -1,43 +1,33 @@
-import { Link } from "react-router-dom"
+import { useLocation } from "react-router-dom";
+import NavItem from "./NavItem";
 
 function Navbar() {
+  const location = useLocation();
+
   return (
     <>
-        <header className="bg-gray-100 mx-5 sm:mx-5 md:mx-5 lg:mx-0">
+      <header className="bg-gray-100 shadow-lg">
+        <div className="mx-2 sm:mx-5 md:mx-5 lg:mx-5">
             <div className="container mx-auto flex justify-between items-center py-3">
                 <div className="header-left">
                     <p className="m-0 text-lg font-semibold">Simple Header</p>
                 </div>
-                <div className="header-right md:text-center text-blue-600">
+            <div className="header-right md:text-center text-blue-600">
                 <nav>
                     <ul className="flex space-x-3">
-                        <li className="nav-item">
-                            <Link className="nav-link text-primary font-semibold hover:text-blue-800" 
-                            to="/">Home</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link text-primary font-semibold hover:text-blue-800" 
-                            to="/features">Features</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link text-primary font-semibold hover:text-blue-800"
-                            to="/pricing">Pricing</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link text-primary font-semibold hover:text-blue-800" 
-                            to="/faqs">FAQs</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link className="nav-link text-primary font-semibold hover:text-blue-800" 
-                            to="/about">About</Link>
-                        </li>
+                        <NavItem to="/" currentPath={location.pathname}>Home</NavItem>
+                        <NavItem to="/features" currentPath={location.pathname}>Features</NavItem>
+                        <NavItem to="/pricing" currentPath={location.pathname}>Pricing</NavItem>
+                        <NavItem to="/faqs" currentPath={location.pathname}>FAQs</NavItem>
+                        <NavItem to="/about" currentPath={location.pathname}>About</NavItem>
                     </ul>
                 </nav>
-                </div>
             </div>
-        </header>
+            </div>
+        </div>      
+      </header>
     </>
-  )
+  );
 }
 
 export default Navbar;
