@@ -1,0 +1,21 @@
+.tableWrapper {
+    margin: auto;
+  }
+  
+  .passengerTable {
+    border-collapse: collapse;
+    width: 80%;
+  }
+  
+  .passengerTable th,
+  .passengerTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .passengerTable th {
+    background-color: red;
+    color: white;
+  }
+  
