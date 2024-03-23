@@ -27,6 +27,10 @@ function CreateProduct() {
     const handleChangeProductCategory = (event) => {
         setProductCategory(event.target.value);
     };
+    const [productCategoryError, setProductCategoryError] = useState('');
+    useEffect(() => {
+        // logic
+    }, [productCategory]);
    
     // Product Image
     const [productImage, setProductImage] = useState('');
@@ -40,6 +44,10 @@ function CreateProduct() {
     const handleChangeProductFreshness = (event) => {
         setProductFreshness(event.target.value);
     };
+    const [productFreshnessError, setProductFreshnessError] = useState('');
+    useEffect(() => {
+        // logic
+    }, [productFreshness]);
 
     // Additional Description
     const [additionalDescription, setAdditionalDescription] = useState('');
@@ -86,6 +94,18 @@ function CreateProduct() {
             setProductNameError('Product Name must be filled in');
         } else {
             setProductNameError('');
+        }
+
+        if (!productCategory) {
+            setProductCategoryError('Product Category must be filled in');
+        } else {
+            setProductCategoryError('');
+        }
+
+        if (!productFreshness) {
+            setProductFreshnessError('Product Freshness must be filled in');
+        } else {
+            setProductFreshnessError('');
         }
     
         if (!additionalDescription) {
@@ -160,7 +180,7 @@ function CreateProduct() {
                         <div className="mt-2">
                             <h3 htmlFor="productName" className="block mb-2">Product name</h3>
                             <input id="productName" type="text" 
-                            className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none ${productNameError ? 'focus:border-red-500 focus:ring-red-500' : 'focus:border-blue-300 focus:ring-blue-300'} flex-1 text-md`}
+                            className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none ${productNameError ? 'focus:border-red-500 focus:ring-red-500 border-red-500' : 'focus:border-blue-300 focus:ring-blue-300'} flex-1 text-md`}
                             value={productName} onChange={handleChangeProductName}/>
                             {productNameError && <small className="text-red-500">{productNameError}</small>}
                         </div>
@@ -172,6 +192,7 @@ function CreateProduct() {
                                 <option value="Electronics and Technology">Electronics and Technology</option>
                                 <option value="Health and Beauty">Health and Beauty</option>
                             </select>
+                            {productCategoryError && <small className="text-red-500">{productCategoryError}</small>}
                         </div>
                         <div className="mt-4">
                             <h3 htmlFor="productImage" className="block mb-2">Image of Product</h3>
@@ -196,6 +217,7 @@ function CreateProduct() {
                                     <span className="ml-2">Refurbished</span>
                                 </label>
                             </div>
+                            {productFreshnessError && <small className="text-red-500">{productFreshnessError}</small>}
                         </div>
                     </div>        
                     </div>
@@ -209,7 +231,7 @@ function CreateProduct() {
                         <div className="mt-2">
                             <h3 htmlFor="additionalDescription" className="block mb-2">Additional Description</h3>
                             <textarea id="additionalDescription" 
-                            className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none ${additionalDescriptionError ? 'focus:border-red-500 focus:ring-red-500' : 'focus:border-blue-300 focus:ring-blue-300'} flex-1 text-md`} 
+                            className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none ${additionalDescriptionError ? 'focus:border-red-500 focus:ring-red-500 border-red-500' : 'focus:border-blue-300 focus:ring-blue-300'} flex-1 text-md`} 
                             value={additionalDescription} 
                             onChange={handleChangeAdditionalDescription}></textarea>
                             {additionalDescriptionError && <small className="text-red-500">{additionalDescriptionError}</small>}
@@ -217,7 +239,7 @@ function CreateProduct() {
                         <div className="mt-4">
                             <h3 htmlFor="productPrice" className="block mb-2">Product Price</h3>
                             <input id="productPrice" type="text" 
-                            className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none ${productPriceError ? 'focus:border-red-500 focus:ring-red-500' : 'focus:border-blue-300 focus:ring-blue-300'} flex-1 text-md`}
+                            className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none ${productPriceError ? 'focus:border-red-500 focus:ring-red-500 border-red-500' : 'focus:border-blue-300 focus:ring-blue-300'} flex-1 text-md`}
                             value={productPrice} onChange={handleChangeProductPrice}/>
                             {productPriceError && <small className="text-red-500">{productPriceError}</small>}
                         </div>
