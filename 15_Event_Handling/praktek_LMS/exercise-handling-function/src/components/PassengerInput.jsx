@@ -1,82 +1,70 @@
-import { Component } from "react";
+import { useState } from "react";
 import styles from "../assets/css/PassengerInput.module.css";
 
-class PassengerInput extends Component {
-    state = {
+function PassengerInput({ tambahPengunjung }) {
+    const [formData, setFormData] = useState({
         nama: "",
         umur: "",
-        jenisKelamin:"Pria",
-        editing: true
-    }
+        jenisKelamin: "Pria",
+        editing: false
+    });
 
-    onChange = e => {
-        this.setState({
+    const { nama, umur, jenisKelamin, editing } = formData;
+
+    const onChange = e => {
+        setFormData({
+            ...formData,
             [e.target.name]: e.target.value
-        })
-    }
+        });
+    };
 
-    handleSubmit = (e) => {
-        e.preventDefault()
-        const formIsNotEmpty = this.state.nama && this.state.umur && this.state.jenisKelamin 
-        if(formIsNotEmpty){
-            const newData = {
-                nama: this.state.nama,
-                umur: this.state.umur,
-                jenisKelamin: this.state.jenisKelamin,
-            }
-            this.props.tambahPengunjung(newData);
-            this.setState({
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const formIsNotEmpty = nama && umur && jenisKelamin;
+        if (formIsNotEmpty) {
+            tambahPengunjung({ nama, umur, jenisKelamin });
+            setFormData({
                 nama: "",
                 umur: "",
                 jenisKelamin: "Pria"
-            })
+            });
         } else {
-            alert("Data masih ada yang kosong")
+            alert("Data masih ada yang kosong");
         }
-    }
+    };
 
-    handleBukaInput = () => {
-        this.setState({
-            editing: false
-        })
-    }
-
-    handleTutupInput = () => {
-        this.setState({
+    const handleBukaInput = () => {
+        setFormData({
+            ...formData,
             editing: true
-        })
-    }
+        });
+    };
 
-    render() {
-        const viewMode = {};
-        const editMode = {};
+    const handleTutupInput = () => {
+        setFormData({
+            ...formData,
+            editing: false
+        });
+    };
 
-        if (this.state.editing) {
-            viewMode.display = 'none';
-        } else {
-            editMode.display = 'none';
-        }
-
-        return (
-            <>
-                <form onSubmit={this.handleSubmit} style={viewMode}>
-                    <p>Masukkan nama anda</p>
-                    <input type="text" placeholder="nama anda..." value={this.state.nama} name="nama" onChange={this.onChange}/>
-                    <p>Masukkan umur anda</p>
-                    <input type="text" placeholder="umur anda..." value={this.state.umur} name="umur" onChange={this.onChange}/>
-                    <p>Masukkan jenis kelamin anda</p>
-                    <select value={this.state.jenisKelamin} name="jenisKelamin" onChange={this.onChange}>
-                        <option value="Pria" selected>Pria</option>
-                        <option value="Wanita">Wanita</option>
-                    </select>
-                    <button type="submit" className={styles.button}>Submit</button>
-                    <button type="button" onClick={this.handleTutupInput} className={styles.button}>Selesai</button>
-                </form>
-                <button onClick={this.handleBukaInput} style={editMode} className={`${styles.button} ${styles.masukkanButton}`}>Masukkan nama Pengunjung
-                </button>
-            </> 
-        )
-    }
+    return (
+        <>
+            <form onSubmit={handleSubmit} style={{ display: editing ? 'block' : 'none' }}>
+                <p>Masukkan nama anda</p>
+                <input type="text" placeholder="nama anda..." value={nama} name="nama" onChange={onChange} />
+                <p>Masukkan umur anda</p>
+                <input type="text" placeholder="umur anda..." value={umur} name="umur" onChange={onChange} />
+                <p>Masukkan jenis kelamin anda</p>
+                <select value={jenisKelamin} name="jenisKelamin" onChange={onChange}>
+                    <option value="Pria">Pria</option>
+                    <option value="Wanita">Wanita</option>
+                </select>
+                <button type="submit" className={styles.button}>Submit</button>
+                <button type="button" onClick={handleTutupInput} className={styles.button}>Selesai</button>
+            </form>
+            <button onClick={handleBukaInput} style={{ display: editing ? 'none' : 'inline-block' }} className={`${styles.button} ${styles.masukkanButton}`}>Masukkan nama Pengunjung</button>
+        </>
+    );
 }
 
 export default PassengerInput;
