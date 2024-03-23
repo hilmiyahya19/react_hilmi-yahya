@@ -48,8 +48,8 @@ function CreateProduct() {
     };
     const [additionalDescriptionError, setAdditionalDescriptionError] = useState('');
     useEffect(() => {
-        if (additionalDescription.length > 10) {
-            setAdditionalDescriptionError('Additional Description cannot exceed 10 characters');
+        if (additionalDescription.length > 20) {
+            setAdditionalDescriptionError('Additional Description cannot exceed 20 characters');
         } else {
             setAdditionalDescriptionError('');
         }
@@ -62,14 +62,24 @@ function CreateProduct() {
     };
     const [productPriceError, setProductPriceError] = useState('');
     useEffect(() => {
-        if (productPrice.length > 10) {
-            setProductPriceError('Product Price cannot exceed 10 characters');
+        if (productPrice.length > 15) {
+            setProductPriceError('Product Price cannot exceed 15 characters');
         } else {
             setProductPriceError('');
         }
     }, [productPrice]);
  
     // Submit
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [productList, setProductList] = useState([]);
+    const productObject = {
+        productName: "",
+        productCategory: "",
+        productImage: "",
+        productFreshness: "",
+        additionalDescription: "",
+        productPrice: "",
+      };
     const handleSubmit = (event) => {
         event.preventDefault();
         if (!productName) {
@@ -78,23 +88,45 @@ function CreateProduct() {
             setProductNameError('');
         }
     
-        if (!productPrice) {
-            setProductPriceError('Product Price must be filled in');
-        } else {
-            setProductPriceError('');
-        }
-    
         if (!additionalDescription) {
             setAdditionalDescriptionError('Additional Description must be filled in');
         } else {
             setAdditionalDescriptionError('');
         }
     
+        if (!productPrice) {
+            setProductPriceError('Product Price must be filled in');
+        } else {
+            setProductPriceError('');
+        }
+
         if (!productName || !productCategory || !productFreshness || !additionalDescription || !productPrice) {
             console.log('Please fill in all fields');
             return;
         }
-    
+
+        const newProduct = {
+            ...productObject,
+            productName,
+            productCategory,
+            productImage,
+            productFreshness,
+            additionalDescription,
+            productPrice,
+          };
+
+        setProductList([...productList, newProduct]);
+
+          // Clear form fields after submission
+          setProductName("");
+          setProductCategory("");
+          setProductImage("");
+          setProductFreshness("");
+          setAdditionalDescription("");
+          setProductPrice("");
+
+        // Set isSubmitted to true when all fields are filled
+        setIsSubmitted(true);
         console.log('Submit clicked');
     };
     
@@ -201,36 +233,39 @@ function CreateProduct() {
                 </section>
                 
                 {/* List Product */}
+                {isSubmitted && (
                 <section className="mt-20 mb-5">
                     <div className="text-center text-black">
                         <h2 className="text-lg font-semibold mb-2">List Product</h2>
                         <table className="table-auto mx-auto">
+                        <thead>
+                            <tr>
+                                <td className="border px-4 py-2"><strong>Product Name</strong></td>
+                                <td className="border px-4 py-2"><strong>Product Category</strong></td>
+                                <td className="border px-4 py-2"><strong>Product Image</strong></td>
+                                <td className="border px-4 py-2"><strong>Product Freshness</strong></td>
+                                <td className="border px-4 py-2"><strong>Additional Description</strong></td>
+                                <td className="border px-4 py-2"><strong>Product Price</strong></td>
+                                
+                            </tr>
+                        </thead>
                         <tbody>
-                            <tr>
-                                <td className="border px-4 py-2"><strong>Product Name:</strong></td>
-                                <td className="border px-4 py-2">{productName}</td>
+                        {productList.map((product) => (
+                            <tr key={product.productName}>
+                                <td className="border px-4 py-2">{product.productName}</td>
+                                <td className="border px-4 py-2">{product.productCategory}</td>
+                                <td className="border px-4 py-2">{product.productImage}</td>  
+                                {/* Image data to be displayed (replace with appropriate logic) */}
+                                <td className="border px-4 py-2">{product.productFreshness}</td>
+                                <td className="border px-4 py-2">{product.additionalDescription}</td>
+                                <td className="border px-4 py-2">{product.productPrice}</td>
                             </tr>
-                            <tr>
-                                <td className="border px-4 py-2"><strong>Product Category:</strong></td>
-                                <td className="border px-4 py-2">{productCategory}</td>
-                            </tr>
-                            <tr>
-                                <td className="border px-4 py-2"><strong>Product Freshness:</strong></td>
-                                <td className="border px-4 py-2">{productFreshness}</td>
-                            </tr>
-                            <tr>
-                                <td className="border px-4 py-2"><strong>Additional Description:</strong></td>
-                                <td className="border px-4 py-2">{additionalDescription}</td>
-                            </tr>
-                            <tr>
-                                <td className="border px-4 py-2"><strong>Product Price:</strong></td>
-                                <td className="border px-4 py-2">{productPrice}</td>
-                            </tr>
-                        </tbody>
+                        ))}
+                       </tbody>
                         </table>
                     </div>
                 </section>
-
+                )}
             </form>
         </section>
 
