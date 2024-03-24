@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
 import tailwind from '/src/assets/tailwind.png'
 import article from '../../articleData';
+import Alert from '../Alert/Alert';
 
 function CreateProduct() {
     const [language, setLanguage] = useState('en'); 
     const handleLanguageChange = () => {
     setLanguage(language === 'en' ? 'id' : 'en');
     };
+
+    // Sequence Number
+    const [sequenceNumber, setSequenceNumber] = useState(1);
 
     // Product Name
     const [productName, setProductName] = useState('');
@@ -38,6 +42,10 @@ function CreateProduct() {
         const file = event.target.files[0];
         setProductImage(file);
     };
+    const [productImageError, setProductImageError] = useState('');
+    useEffect(() => {
+        // logic
+    }, [productImage]);
 
     // Product Freshness
     const [productFreshness, setProductFreshness] = useState("");
@@ -102,6 +110,12 @@ function CreateProduct() {
             setProductCategoryError('');
         }
 
+        if (!productImage) {
+            setProductImageError('Product Image must be filled in');
+        } else {
+            setProductImageError('');
+        }
+
         if (!productFreshness) {
             setProductFreshnessError('Product Freshness must be filled in');
         } else {
@@ -120,13 +134,14 @@ function CreateProduct() {
             setProductPriceError('');
         }
 
-        if (!productName || !productCategory || !productFreshness || !additionalDescription || !productPrice) {
+        if (!productName || !productCategory || !productImage || !productFreshness || !additionalDescription || !productPrice) {
             console.log('Please fill in all fields');
             return;
         }
 
         const newProduct = {
             ...productObject,
+            sequenceNumber: sequenceNumber, 
             productName,
             productCategory,
             productImage,
@@ -138,6 +153,7 @@ function CreateProduct() {
         setProductList([...productList, newProduct]);
 
           // Clear form fields after submission
+          setSequenceNumber(sequenceNumber + 1);
           setProductName("");
           setProductCategory("");
           setProductImage("");
@@ -160,6 +176,7 @@ function CreateProduct() {
 
   return (
     <>
+        <Alert/>
         <section className="mt-5 mx-5 sm:mx-5 md:mx-20 lg:mx-52">
             <div className="text-center">
                 <img className="w-16 h-auto mx-auto" src={tailwind} alt="tailwind"/>
@@ -197,6 +214,7 @@ function CreateProduct() {
                         <div className="mt-4">
                             <h3 htmlFor="productImage" className="block mb-2">Image of Product</h3>
                             <input id="productImage" type="file" className="form-input mt-1 block w-full" onChange={handleChangeProductImage}/>
+                            {productImageError && <small className="text-red-500">{productImageError}</small>}
                         </div>
                         <div className="mt-5">
                             <h3 className="block">Product Freshness</h3>
@@ -262,6 +280,7 @@ function CreateProduct() {
                         <table className="table-auto mx-auto">
                         <thead>
                             <tr>
+                                <td className="border px-4 py-2"><strong>No</strong></td>
                                 <td className="border px-4 py-2"><strong>Product Name</strong></td>
                                 <td className="border px-4 py-2"><strong>Product Category</strong></td>
                                 <td className="border px-4 py-2"><strong>Product Image</strong></td>
@@ -274,6 +293,7 @@ function CreateProduct() {
                         <tbody>
                         {productList.map((product) => (
                             <tr key={product.productName}>
+                                <td className="border px-4 py-2">{product.sequenceNumber}</td>
                                 <td className="border px-4 py-2">{product.productName}</td>
                                 <td className="border px-4 py-2">{product.productCategory}</td>
                                 <td className="border px-4 py-2">{product.productImage.name}</td>
