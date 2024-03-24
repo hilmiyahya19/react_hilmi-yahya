@@ -314,11 +314,11 @@ function CreateProduct() {
         {/* random number */}
         <section className="mt-5 mx-5 sm:mx-5 md:mx-20 lg:mx-52">
             <section className="mt-20">
-                <h1 className='text-center mb-2 text-md font-semibold'>Random Number</h1>
+                <h1 className='text-center mb-2 text-md font-semibold'>Random Number : {count}</h1>
                 <div className="text-center text-white">
                     <button className="btn-primary py-2 px-4 bg-gray-400 w-1/3 rounded-md hover:bg-gray-600" 
                     value={count} onClick={handleRandomNumber}>
-                        Generate Random Number
+                        Generate Random Number 
                     </button>
                 </div>
             </section>
