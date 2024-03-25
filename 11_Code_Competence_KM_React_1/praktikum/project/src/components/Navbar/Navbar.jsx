@@ -10,9 +10,9 @@ function Navbar() {
         <div className="mx-2 sm:mx-5 md:mx-5 lg:mx-5">
             <div className="container mx-auto flex justify-between items-center py-3">
                 <div className="header-left">
-                  <img src={`/img/twitter-32.png`} alt="Twitter" className="w-6 h-6 ml-6 md:ml-10 lg:ml-10"/>
+                  <img src={`/img/fire.png`} alt="logo" className="w-10 h-10 mx-5"/>
                 </div>
-            <div className="header-right md:text-center text-blue-600">
+            <div className="header-right md:text-center text-blue-600 mx-3">
                 <nav>
                     <ul className="flex space-x-3">
                         <NavItem to="/" currentPath={location.pathname}>Home</NavItem>

@@ -1,6 +1,6 @@
 import Container from "../components/Container/Container";
 import Navbar from "../components/Navbar/Navbar";
-import FooterTemplate from "../components/Footer/FooterTemplate";
+import Footer from "../components/Footer/Footer";
 
 function Layout(props) {
     return (
@@ -11,7 +11,7 @@ function Layout(props) {
                     {props.children}
                </Container>
             </main>
-            <FooterTemplate/>
+            <Footer/>
         </div>
     )
 }

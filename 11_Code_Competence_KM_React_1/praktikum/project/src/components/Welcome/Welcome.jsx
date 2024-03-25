@@ -1,29 +1,30 @@
 function Welcome() {
   return (
     <>
-    <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
-      <div className="container mx-auto items-center flex flex-wrap">
-        <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
-          <div className="pt-32 sm:pt-0">
-            <h2 className="font-semibold text-4xl text-blueGray-600">
-              Notus Tailwind JS - A beautiful extension for Tailwind CSS.
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-              Notus Tailwind JS is Free and Open Source. It does not change any
-              of the CSS from{' '}
-              <a href="https://tailwindcss.com/?ref=creativetim" className="text-blueGray-600" target="_blank">
-                Tailwind CSS.
-              </a>{' '}
-              It features multiple HTML elements and it comes with dynamic
-              components for ReactJS, Vue and Angular.
-            </p>
-            <div className="mt-12">
-              <a href="https://www.creative-tim.com/learning-lab/tailwind/js/overview/notus?ref=njs-index" target="_blank" className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-pink-500 active:bg-pink-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150">
-                Get started
-              </a>
-              <a href="https://github.com/creativetimofficial/notus-js?ref=njs-index" className="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150" target="_blank">
-                Github Star
-              </a>
+    <section className="items-center mt-5 md:mt-10 lg:mt-20 mb-10 md:mb-16 lg:mb-28">
+      <div className="mx-auto items-center flex flex-wrap">
+        <div className="md:w-full lg:w-full xl:w-11/12 px-4"> 
+          <div className="flex flex-wrap md:flex-nowrap">
+            {/* hero bagian kiri */}
+            <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 pt-0 sm:pt-0 md:pt-5 lg:pt-10 mx-2"> 
+              <h2 className="font-semibold text-4xl">
+                Welcome to MyWebsite
+              </h2>
+              <p className="mt-4 text-lg">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam itaque eaque tempora mollitia veniam repudiandae nisi, ratione in facilis natus, recusandae, nam vel perferendis commodi ipsum cumque? Eius, tempora qui?
+              </p>
+              <div className="mt-12">
+                <button className="text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 uppercase text-sm shadow hover:shadow-lg">
+                  Get started
+                </button>
+                <button className="ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 uppercase text-sm shadow hover:shadow-lg">
+                  Learn More
+                </button>
+              </div>
+            </div>
+            {/* hero bagian kanan */}
+            <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 pt-10 mx-5 flex items-center"> 
+              <img src={`/img/su.png`} className="rounded-lg w-full"/> 
             </div>
           </div>
         </div>
@@ -34,3 +35,4 @@ function Welcome() {
 }
 
 export default Welcome;
+
