@@ -185,7 +185,7 @@ function ContactMe() {
       </section>
 
       {/* table hasil submit form */}
-      <div className="flex justify-center mb-10">
+      <div className="flex justify-center mb-20">
         <section>
           {isSubmitted && (   
             <div className="text-center text-black">

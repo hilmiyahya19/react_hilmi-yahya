@@ -325,7 +325,7 @@ function CreateProduct() {
         </section>
 
         {/* Tombol untuk mengubah bahasa */}
-        <section className="mt-5 mx-5 sm:mx-5 md:mx-20 lg:mx-52">
+        <section className="mt-5 mx-5 sm:mx-5 md:mx-20 lg:mx-52 mb-20">
             <section className="mb-5">
                 <h1 className='text-center mb-2 text-md font-semibold'>Ganti Bahasa</h1>
                 <div className="text-center text-white">

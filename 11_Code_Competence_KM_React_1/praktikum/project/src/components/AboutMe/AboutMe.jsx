@@ -3,7 +3,7 @@ function About() {
     const facebook = `https://www.facebook.com/hilmi.yahya.963?mibextid=ZbWKwL`
 
     return (
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 mx-auto mt-20">
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 mx-auto mt-20 mb-20">
           <div className="md:col-span-1 lg:col-span-1 m-5 sm:m-5 md:m-10 lg:m-20"> 
             <h1 className="text-3xl font-semibold">Hilmi Yahya</h1>
             <p className="text-lg mt-3">beginner programmer, interested in becoming a fullstack web developer</p>

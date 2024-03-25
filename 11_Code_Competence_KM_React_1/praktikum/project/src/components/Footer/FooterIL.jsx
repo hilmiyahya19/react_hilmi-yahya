@@ -1,4 +1,4 @@
-function Footer2() {
+function FooterIL() {
     return (
       <div>
         <section className="bg-blue-300 flex items-center justify-between p-8">
@@ -21,4 +21,4 @@ function Footer2() {
     )
   }
   
-  export default Footer2;
+  export default FooterIL;
