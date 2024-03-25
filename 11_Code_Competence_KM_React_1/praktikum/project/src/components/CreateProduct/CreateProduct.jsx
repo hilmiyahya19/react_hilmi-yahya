@@ -276,7 +276,7 @@ function CreateProduct() {
                 {isSubmitted && (
                 <section className="mt-20 mb-5">
                     <div className="text-center text-black">
-                        <h2 className="text-lg font-semibold mb-2">List Product</h2>
+                        <h2 className="text-3xl font-semibold mb-5">List Product</h2>
                         <table className="table-auto mx-auto">
                         <thead>
                             <tr>
