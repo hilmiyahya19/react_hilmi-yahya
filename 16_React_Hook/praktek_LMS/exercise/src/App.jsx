@@ -2,15 +2,18 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Form, Table } from 'react-bootstrap';
+import { v4 as uuidv4 } from 'uuid'; // Import library uuid
 
 function App() {
   const [data, setData] = useState([
     {
+      id: uuidv4(), // Gunakan uuid untuk menambahkan nomor unik
       nama: 'Hilmi',
       umur: 21,
       jenisKelamin: 'Laki-laki'
     },
     {
+      id: uuidv4(),
       nama: 'Yahya',
       umur: 22,
       jenisKelamin: 'Laki-laki'
@@ -30,6 +33,7 @@ function App() {
     }
 
     const newData = {
+      id: uuidv4(), // Gunakan uuid untuk menambahkan nomor unik
       nama: nama,
       umur: umur,
       jenisKelamin: jenisKelamin,
@@ -46,13 +50,13 @@ function App() {
   const [umur, setUmur] = useState('');
   const [jenisKelamin, setJenisKelamin] = useState('');
 
-  const deleteData = (nama) => {
-    const newData = data.filter((item) => item.nama !== nama);
+  const deleteData = (id) => { // Perubahan parameter menjadi id
+    const newData = data.filter((item) => item.id !== id); // Perubahan filter berdasarkan id
     setData(newData);
   }
 
-  const handleEditData = (nama) => {
-    const editItem = data.find(item => item.nama === nama);
+  const handleEditData = (id) => { // Perubahan parameter menjadi id
+    const editItem = data.find(item => item.id === id); // Perubahan pencarian berdasarkan id
     setEditData(editItem);
     setNama(editItem.nama);
     setUmur(editItem.umur);
@@ -66,8 +70,9 @@ function App() {
     }
 
     const updatedData = data.map(item => {
-      if (item.nama === editData.nama) {
+      if (item.id === editData.id) {
         return {
+          id: item.id, // Menjaga id tetap
           nama: nama,
           umur: umur,
           jenisKelamin: jenisKelamin,
@@ -91,6 +96,7 @@ function App() {
         <Table striped bordered hover className='table'>
           <thead>
             <tr>
+              <th>#</th> {/* Kolom nomor */}
               <th>Nama</th>
               <th>Umur</th>
               <th>Jenis Kelamin</th>
@@ -99,16 +105,17 @@ function App() {
             </tr>
           </thead>
           <tbody>
-            {data.map((item) => (
-              <tr key={item.nama}>
+            {data.map((item, index) => ( // Menggunakan index untuk nomor
+              <tr key={item.id}>
+                <td>{index + 1}</td> {/* Nomor ditambahkan di sini */}
                 <td>{item.nama}</td>
                 <td>{item.umur}</td>
                 <td>{item.jenisKelamin}</td>
                 <td>
-                  <Button variant='danger' onClick={() => deleteData(item.nama)}>Hapus Data</Button>
+                  <Button variant='danger' onClick={() => deleteData(item.id)}>Hapus Data</Button>
                 </td>
                 <td>
-                  <Button variant='success' onClick={() => handleEditData(item.nama)}>Edit Data</Button>
+                  <Button variant='success' onClick={() => handleEditData(item.id)}>Edit Data</Button>
                 </td>
               </tr>
             ))}
