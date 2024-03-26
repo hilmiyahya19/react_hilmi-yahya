@@ -372,16 +372,14 @@ return (
 
                 <section className="mt-20 mb-5">
                     <div className="text-center text-white">
-                    <button className="btn-primary py-2 px-4 bg-blue-600 w-1/3 rounded-md hover:bg-blue-800">Submit</button>
+                        {editData ? (
+                            <Button variant='update' onClick={updateData}>Update Data</Button>
+                        ) : (
+                            <Button variant='secondary' onClick={addData}>Tambah Data</Button>
+                        )}
                     </div>
                 </section>
 
-                {editData ? (
-                <Button onClick={updateData}>Update Data</Button>
-                ) : (
-                <Button onClick={addData}>Tambah Data</Button>
-                )}
-                
                 {/* List Product */}
                 <section className="mt-20 mb-5">
                     <div className="text-center text-black">

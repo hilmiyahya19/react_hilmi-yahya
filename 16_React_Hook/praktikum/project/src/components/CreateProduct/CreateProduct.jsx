@@ -33,34 +33,39 @@ function CreateProduct() {
         setData(data);
       }, [data]);
 
-      const addData = () => {
+    // Saat menyimpan data baru
+    const addData = () => {
         if (productName === '' || productCategory === '' || productImage === '' || productFreshness === '' ||additionalDescription === '' || productPrice === '') {
-          alert('Semua data harus diisi');
-          return;
+            alert('Semua data harus diisi');
+            return;
         }
-    
-        const newData = {
-            id: uuidv4(), 
-            productName,
-            productCategory,
-            productImage,
-            productFreshness,
-            additionalDescription,
-            productPrice,
-        };
+
+        // Menyimpan objek file gambar di state productImage
+        const file = productImage;
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            const base64String = reader.result;
+            const newData = {
+                id: uuidv4(), 
+                productName,
+                productCategory,
+                productImage: base64String,
+                productFreshness,
+                additionalDescription,
+                productPrice,
+            };
     
         setData([...data, newData]);
     
         setProductName("");
         setProductCategory("");
-        setProductImage("");
+        setProductImage(""); 
         setProductFreshness("");
         setAdditionalDescription("");
         setProductPrice("");
-      }
-
-    // const [productName, setProductName] = useState('');
-    // dst...
+        };
+    }
 
     const deleteData = (id) => { 
         const newData = data.filter((item) => item.id !== id); 
@@ -72,7 +77,8 @@ function CreateProduct() {
     setLanguage(language === 'en' ? 'id' : 'en');
     };
 
-    const handleEditData = (id) => { 
+    const handleEditData = (id, e) => { 
+        e.preventDefault();
         const editItem = data.find(item => item.id === id); 
         setEditData(editItem);
         setProductName(editItem.productName);
@@ -115,47 +121,25 @@ function CreateProduct() {
       setProductPrice("");
     }
 
-    // Sequence Number
-    // const [sequenceNumber, setSequenceNumber] = useState(1);
 
     // Product Name
     const [productName, setProductName] = useState('');
-    const handleChangeProductName = (event) => {
-        setProductName(event.target.value);
-    };
 
     // Product Category
     const [productCategory, setProductCategory] = useState('');
-    const handleChangeProductCategory = (event) => {
-        setProductCategory(event.target.value);
-    };
 
     // Product Image
     const [productImage, setProductImage] = useState('');
-    const handleChangeProductImage = (event) => {
-        const file = event.target.files[0];
-        setProductImage(file);
-    };
 
     // Product Freshness
     const [productFreshness, setProductFreshness] = useState("");
-    const handleChangeProductFreshness = (event) => {
-        setProductFreshness(event.target.value);
-    };
 
     // Additional Description
     const [additionalDescription, setAdditionalDescription] = useState('');
-    const handleChangeAdditionalDescription = (event) => {
-        setAdditionalDescription(event.target.value);
-    };
 
     // Product Price
     const [productPrice, setProductPrice] = useState('');
-    const handleChangeProductPrice = (event) => {
-        setProductPrice(event.target.value);
-    };
 
-    
     // random number  
     const [count, setCount] = useState('');
     const handleRandomNumber = () => {
@@ -187,39 +171,45 @@ return (
                         <div className="mt-2">
                             <h3 htmlFor="productName" className="block mb-2">Product name</h3>
                             <input id="productName" type="text" 
-                            className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none focus:border-blue-300 focus:ring-blue-300'} flex-1 text-md`}
-                            value={productName} onChange={handleChangeProductName}/>
+                            className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none focus:border-blue-300 focus:ring-blue-300 flex-1 text-md`}
+                            value={productName} onChange={(e) => setProductName(e.target.value)}/>
                            
                         </div>
                         <div className="mt-4">
                             <h3 htmlFor="productCategory" className="block mb-2">Product Category</h3>
-                            <select id="productCategory" className="form-select mt-1 block w-full border rounded-md" value={productCategory} onChange={handleChangeProductCategory}>
+                            <select id="productCategory" className="form-select mt-1 block w-full  focus:outline-none border rounded-md" value={productCategory} 
+                            onChange={(e) => setProductCategory(e.target.value)}>
                                 <option disabled value="">Choose...</option>
                                 <option value="Clothing and Accessories">Clothing and Accessories</option>
                                 <option value="Electronics and Technology">Electronics and Technology</option>
+                                <option value="Food and Beverages">Food and Beverages</option>
+                                <option value="Home and Garden">Home and Garden</option>
                                 <option value="Health and Beauty">Health and Beauty</option>
+                                <option value="Sports and Outdoors">Sports and Outdoors</option>
+                                <option value="Toys and Games">Toys and Games</option>
                             </select>
                         </div>
                         <div className="mt-4">
                             <h3 htmlFor="productImage" className="block mb-2">Image of Product</h3>
-                            <input id="productImage" type="file" className="form-input mt-1 block w-full" onChange={handleChangeProductImage}/>
+                            <input id="productImage" type="file" className="form-input mt-1 block w-full" 
+                            onChange={(e) => setProductImage(e.target.files[0])}/>
                         </div>
                         <div className="mt-5">
                             <h3 className="block">Product Freshness</h3>
                             <div className="mt-2">
                                 <label htmlFor="brandNew" className="inline-flex items-center">
                                     <input id="brandNew" type="radio" className="form-radio" name="freshness" value="brand-new" checked={productFreshness === "brand-new"} 
-                                    onChange={handleChangeProductFreshness}/>
+                                    onChange={(e) => setProductFreshness(e.target.value)}/>
                                     <span className="ml-2">Brand New</span>
                                 </label>
                                 <label htmlFor="secondHand" className="inline-flex items-center ml-6">
                                     <input id="secondHand" type="radio" className="form-radio" name="freshness" value="second-hand" checked={productFreshness === "second-hand"}
-                                    onChange={handleChangeProductFreshness}/>
+                                    onChange={(e) => setProductFreshness(e.target.value)}/>
                                     <span className="ml-2">Second hand</span>
                                 </label>
                                 <label htmlFor="refurbished" className="inline-flex items-center ml-6">
                                     <input id="refurbished" type="radio" className="form-radio" name="freshness" value="refurbished" checked={productFreshness === "refurbished"}
-                                    onChange={handleChangeProductFreshness}/>
+                                    onChange={(e) => setProductFreshness(e.target.value)}/>
                                     <span className="ml-2">Refurbished</span>
                                 </label>
                             </div>
@@ -236,16 +226,16 @@ return (
                         <div className="mt-2">
                             <h3 htmlFor="additionalDescription" className="block mb-2">Additional Description</h3>
                             <textarea id="additionalDescription" 
-                            className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none focus:border-blue-300 focus:ring-blue-300'} flex-1 text-md`} 
+                            className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none focus:border-blue-300 focus:ring-blue-300 flex-1 text-md`} 
                             value={additionalDescription} 
-                            onChange={handleChangeAdditionalDescription}>
+                            onChange={(e) => setAdditionalDescription(e.target.value)}>
                             </textarea>
                         </div>
                         <div className="mt-4">
                             <h3 htmlFor="productPrice" className="block mb-2">Product Price</h3>
                             <input id="productPrice" type="number" 
-                            className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none focus:border-blue-300 focus:ring-blue-300'} flex-1 text-md`}
-                            value={productPrice} onChange={handleChangeProductPrice}/>
+                            className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none focus:border-blue-300 focus:ring-blue-300 flex-1 text-md`}
+                            value={productPrice} onChange={(e) => setProductPrice(e.target.value)}/>
                         </div>
                     </div>            
                     </div>
@@ -253,10 +243,13 @@ return (
                 </section>
 
                 <section className="mt-20 mb-5">
-                    {/* <div className="text-center text-white">
-                    <button className="btn-primary py-2 px-4 bg-blue-600 w-1/3 rounded-md hover:bg-blue-800">Submit</button>
-                    </div> */}
-                    <Button></Button>
+                    <div className="text-center">
+                    {editData ? (
+                        <Button className='mt-3' variant='primary' type='button' onClick={updateData}>Update Data</Button>
+                    ) : (
+                        <Button className='mt-3' variant='primary' type='button' onClick={addData}>Tambah Data</Button>
+                    )}
+                    </div>
                 </section>             
                 
                 {/* List Product */}
@@ -284,7 +277,11 @@ return (
                                 <td className="border px-4 py-2">{index + 1}</td>
                                 <td className="border px-4 py-2">{item.productName}</td>
                                 <td className="border px-4 py-2">{item.productCategory}</td>
-                                <td className="border px-4 py-2">{item.productImage}</td>
+                                <td className="border px-4 py-2">
+                                {item.productImage && (
+                                <img src={item.productImage} alt='product image' className="h-16 w-auto"/>
+                                )}
+                                </td>
                                 <td className="border px-4 py-2">{item.productFreshness}</td>
                                 <td className="border px-4 py-2">{item.additionalDescription}</td>
                                 <td className="border px-4 py-2">{item.productPrice}</td>
@@ -292,7 +289,7 @@ return (
                                     <Button variant='delete' onClick={() => deleteData(item.id)}>Hapus Data</Button>
                                 </td>
                                 <td>
-                                    <Button variant='edit' onClick={() => handleEditData(item.id)}>Edit Data</Button>
+                                    <Button variant='edit' onClick={(e) => handleEditData(item.id, e)}>Edit Data</Button>
                                 </td>
                             </tr>
                         ))}

@@ -1,9 +1,10 @@
 const theme = {
     colors: {
-        primary: "#4361e",
-        secondary: "#b5179e",
+        primary: '#4050E5',
+        secondary: 'purple',
         edit:'#28a745',
         delete:'#dc3545',
+        update:'#FFD700',
     },
 
     sizes: {
