@@ -13,7 +13,7 @@ function CreateProduct() {
           productCategory: "Clothing and Accessories",
           productImage: "kaos.jpg",
           productFreshness: "brand-new",
-          additionalDescription: "bagus",
+          additionalDescription: "erigo",
           productPrice: 100000,
         },
         {
@@ -21,9 +21,9 @@ function CreateProduct() {
           productName: "Laptop",
           productCategory: "Electronics and Technology",
           productImage: "laptop.jpg",
-          productFreshness: "second-hand",
-          additionalDescription: "bagus",
-          productPrice: 10000000,
+          productFreshness: "brand-new",
+          additionalDescription: "acer nitro 5",
+          productPrice: 10500000,
         }, 
     ]);
 
@@ -245,7 +245,7 @@ return (
                 <section className="mt-20 mb-5">
                     <div className="text-center">
                     {editData ? (
-                        <Button className='mt-3' variant='primary' type='button' onClick={updateData}>Update Data</Button>
+                        <Button className='mt-3' variant='update' type='button' onClick={updateData}>Update Data</Button>
                     ) : (
                         <Button className='mt-3' variant='primary' type='button' onClick={addData}>Tambah Data</Button>
                     )}
