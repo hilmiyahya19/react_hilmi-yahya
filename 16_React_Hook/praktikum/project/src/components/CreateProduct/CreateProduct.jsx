@@ -169,7 +169,7 @@ function CreateProduct() {
 return (
     <>
         <Alert/>
-        <section className="mt-5 mx-5 sm:mx-5 md:mx-20 lg:mx-52">
+        <section className="mt-5 md:mt-8 lg:mt-10 mx-5 sm:mx-5 md:mx-20 lg:mx-52">
             <div className="text-center">
                 <img className="w-16 h-auto mx-auto" src={tailwind} alt="tailwind"/>
             </div>
@@ -273,7 +273,7 @@ return (
                 </Modal>
                 )}
 
-                <section className="mt-20 mb-5">
+                <section className="mt-14 mb-5">
                     <div className="text-center">
                     {editData ? (
                         <Button className='mt-3' variant='update' type='button' onClick={updateData}>Update Data</Button>
@@ -284,7 +284,7 @@ return (
                 </section>             
                 
                 {/* List Product */}
-                <section className="mt-20 mb-5">
+                <section className="mt-16 mb-5">
                     <div className="text-center text-black">
                         <h2 className="text-3xl font-semibold mb-5">List Product</h2>
                         <table className="table-auto mx-auto">
