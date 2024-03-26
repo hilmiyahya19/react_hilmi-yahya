@@ -4,6 +4,7 @@ import article from '../../articleData';
 import Alert from '../Alert/Alert';
 import Button from '../ui/Button/Button';
 import { v4 as uuidv4 } from 'uuid'; 
+import Modal from '../ui/Modal/Modal';
 
 function CreateProduct() {
     const [data, setData] = useState([
@@ -57,6 +58,8 @@ function CreateProduct() {
             };
     
         setData([...data, newData]);
+
+        console.log("Added item with id:", newData.id); // Console log ID data yang baru saja ditambahkan
     
         setProductName("");
         setProductCategory("");
@@ -67,9 +70,24 @@ function CreateProduct() {
         };
     }
 
+    const [showModal, setShowModal] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null); // State untuk menyimpan item yang dipilih
+
     const deleteData = (id) => { 
+        const selectedItem = data.find(item => item.id === id); // Menyimpan item yang dipilih
+        setSelectedItem(selectedItem); // Menyimpan item yang dipilih ke dalam state
+        setShowModal(true); // Menampilkan modal konfirmasi saat tombol delete di klik
+    }
+
+    const confirmDelete = (id) => {
         const newData = data.filter((item) => item.id !== id); 
         setData(newData);
+        console.log("Deleted item with id:", id); // Console log ID data yang baru saja dihapus
+        setShowModal(false); // Menutup modal setelah konfirmasi
+    }
+
+    const cancelDelete = () => {
+        setShowModal(false); // Menutup modal jika pengguna memilih untuk tidak menghapus
     }
 
     const [language, setLanguage] = useState('en'); 
@@ -242,6 +260,19 @@ return (
                     </div>
                 </section>
 
+                {/* Modal konfirmasi */}
+                {showModal && (
+                <Modal>
+                    <div className="text-center">
+                        <h2 className="text-xl font-semibold">apakah anda yakin ingin menghapus data ini?</h2>
+                        <div className="mt-4">
+                            <Button className='mx-1' variant="close" onClick={cancelDelete}>Tidak</Button>
+                            <Button className='mx-1' variant="delete" onClick={() => confirmDelete(selectedItem.id)}>Ya</Button>      
+                        </div>
+                    </div>
+                </Modal>
+                )}
+
                 <section className="mt-20 mb-5">
                     <div className="text-center">
                     {editData ? (
@@ -267,8 +298,7 @@ return (
                                 <td className="border px-4 py-2"><strong>Additional Description</strong></td>
                                 <td className="border px-4 py-2"><strong>Product Price</strong></td>
                                 <td className="border px-4 py-2"><strong>Hapus Data</strong></td>
-                                <td className="border px-4 py-2"><strong>Edit Data</strong></td>
-                                
+                                <td className="border px-4 py-2"><strong>Edit Data</strong></td>  
                             </tr>
                         </thead>
                         <tbody>
@@ -286,7 +316,7 @@ return (
                                 <td className="border px-4 py-2">{item.additionalDescription}</td>
                                 <td className="border px-4 py-2">{item.productPrice}</td>
                                 <td>
-                                    <Button variant='delete' onClick={() => deleteData(item.id)}>Hapus Data</Button>
+                                    <Button variant='delete' onClick={() => deleteData(item.id)} type='button'>Hapus Data</Button>
                                 </td>
                                 <td>
                                     <Button variant='edit' onClick={(e) => handleEditData(item.id, e)}>Edit Data</Button>

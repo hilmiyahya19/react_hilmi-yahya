@@ -5,6 +5,7 @@ const theme = {
         edit:'#28a745',
         delete:'#dc3545',
         update:'#FFD700',
+        close: '#6c757d',
     },
 
     sizes: {
