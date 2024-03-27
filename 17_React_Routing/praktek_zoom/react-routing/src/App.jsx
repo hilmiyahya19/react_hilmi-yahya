@@ -1,38 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-// import Navbar from './components/Navbar';
+import { Route, Routes } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import Navigation from './components/Navigation/Navigation';
+import Login from './pages/Login';
+
+// Home
+function Home() {
+  return <h1>Home Page</h1>;
+}
+
+// HeroSection
+function HeroSection() {
+  const { id } = useParams();
+  return id ? <h1>Hero Section with ID: {id}</h1> : <h1>Hero Section without ID</h1>;
+}
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      {/* <Navbar></Navbar>
-      <h1>hello</h1> */}
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Routes>
+    <Route path="/" element={<Navigation />}>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login/>} />
+      <Route path="/hero" element={<HeroSection />} />
+      <Route path="/hero/:id" element={<HeroSection />} />
+    </Route>
+    </Routes>
+  );
 }
 
 export default App;
