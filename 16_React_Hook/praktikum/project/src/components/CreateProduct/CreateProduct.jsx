@@ -5,6 +5,7 @@ import Alert from '../Alert/Alert';
 import Button from '../ui/Button/Button';
 import { v4 as uuidv4 } from 'uuid'; 
 import Modal from '../ui/Modal/Modal';
+import useFormValidation from '../../utils/customHook/useFormValidation';
 
 function CreateProduct() {
     const [data, setData] = useState([
@@ -35,8 +36,19 @@ function CreateProduct() {
       }, [data]);
 
     // Saat menyimpan data baru
-    const addData = () => {
-        if (productName === '' || productCategory === '' || productImage === '' || productFreshness === '' ||additionalDescription === '' || productPrice === '') {
+    const addData = (event) => {
+        event.preventDefault(); 
+
+        const isValid = validateForm(
+            productName,
+            productCategory,
+            productImage,
+            productFreshness,
+            additionalDescription,
+            productPrice
+        );
+
+        if (!isValid) {
             alert('Semua data harus diisi');
             return;
         }
@@ -139,24 +151,24 @@ function CreateProduct() {
       setProductPrice("");
     }
 
-
-    // Product Name
     const [productName, setProductName] = useState('');
-
-    // Product Category
     const [productCategory, setProductCategory] = useState('');
-
-    // Product Image
     const [productImage, setProductImage] = useState('');
-
-    // Product Freshness
     const [productFreshness, setProductFreshness] = useState("");
-
-    // Additional Description
     const [additionalDescription, setAdditionalDescription] = useState('');
-
-    // Product Price
     const [productPrice, setProductPrice] = useState('');
+
+    const {
+        productNameError,
+        productCategoryError,
+        productImageError,
+        productFreshnessError,
+        additionalDescriptionError,
+        productPriceError,
+        validateForm,
+    } = useFormValidation(
+        productName, productPrice, additionalDescription, productCategory, productFreshness, productImage
+        );
 
     // random number  
     const [count, setCount] = useState('');
@@ -189,9 +201,12 @@ return (
                         <div className="mt-2">
                             <h3 htmlFor="productName" className="block mb-2">Product name</h3>
                             <input id="productName" type="text" 
-                            className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none focus:border-blue-300 focus:ring-blue-300 flex-1 text-md`}
-                            value={productName} onChange={(e) => setProductName(e.target.value)}/>
-                           
+                            // className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none focus:border-blue-300 focus:ring-blue-300 flex-1 text-md`}
+                            // value={productName} onChange={(e) => setProductName(e.target.value)}
+                            className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none ${productNameError ? 'focus:border-red-500 focus:ring-red-500 border-red-500' : 'focus:border-blue-300 focus:ring-blue-300'} flex-1 text-md`}
+                            value={productName} onChange={(e) => setProductName(e.target.value)}
+                            />
+                            {productNameError && <small className="text-red-500">{productNameError}</small>}
                         </div>
                         <div className="mt-4">
                             <h3 htmlFor="productCategory" className="block mb-2">Product Category</h3>
@@ -206,11 +221,13 @@ return (
                                 <option value="Sports and Outdoors">Sports and Outdoors</option>
                                 <option value="Toys and Games">Toys and Games</option>
                             </select>
+                            {productCategoryError && <small className="text-red-500">{productCategoryError}</small>}
                         </div>
                         <div className="mt-4">
                             <h3 htmlFor="productImage" className="block mb-2">Image of Product</h3>
                             <input id="productImage" type="file" className="form-input mt-1 block w-full" 
                             onChange={(e) => setProductImage(e.target.files[0])}/>
+                            {productImageError && <small className="text-red-500">{productImageError}</small>}
                         </div>
                         <div className="mt-5">
                             <h3 className="block">Product Freshness</h3>
@@ -231,6 +248,7 @@ return (
                                     <span className="ml-2">Refurbished</span>
                                 </label>
                             </div>
+                            {productFreshnessError && <small className="text-red-500">{productFreshnessError}</small>}
                         </div>
                     </div>        
                     </div>
@@ -248,12 +266,14 @@ return (
                             value={additionalDescription} 
                             onChange={(e) => setAdditionalDescription(e.target.value)}>
                             </textarea>
+                            {additionalDescriptionError && <small className="text-red-500">{additionalDescriptionError}</small>}
                         </div>
                         <div className="mt-4">
                             <h3 htmlFor="productPrice" className="block mb-2">Product Price</h3>
                             <input id="productPrice" type="number" 
                             className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none focus:border-blue-300 focus:ring-blue-300 flex-1 text-md`}
                             value={productPrice} onChange={(e) => setProductPrice(e.target.value)}/>
+                            {productPriceError && <small className="text-red-500">{productPriceError}</small>}
                         </div>
                     </div>            
                     </div>
