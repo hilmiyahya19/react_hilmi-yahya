@@ -201,8 +201,6 @@ return (
                         <div className="mt-2">
                             <h3 htmlFor="productName" className="block mb-2">Product name</h3>
                             <input id="productName" type="text" 
-                            // className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none focus:border-blue-300 focus:ring-blue-300 flex-1 text-md`}
-                            // value={productName} onChange={(e) => setProductName(e.target.value)}
                             className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none ${productNameError ? 'focus:border-red-500 focus:ring-red-500 border-red-500' : 'focus:border-blue-300 focus:ring-blue-300'} flex-1 text-md`}
                             value={productName} onChange={(e) => setProductName(e.target.value)}
                             />
