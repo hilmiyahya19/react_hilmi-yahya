@@ -25,3 +25,14 @@ jangan memanggil hooks dari fungsi-fungsi javascript biasa
 kita dapat :
 - memanggil hooks dari komponen-komponen fungsi react
 - memanggil hooks dari custom hooks
+
+# Implementasi useState & useEffect di Component
+## Menggunakan useState
+## Menggunakan useEffect 
+- Effect Hook memungkinkan kita melakukan efek samping (side effects) di dalam function component
+- componentDidMount, componentDidUpdate, dan componentWillUnmount = useEffect
+- Ada dua jenis : Butuh pembersihan dan tidak butuh pembersihan
+
+# Membuat Custom Hooks
+## Custom Hooks
+Membuat Hook kita sendiri memungkinkan kita mengekstrak komponen logika ke fungsi yang dapat digunakan lagi
