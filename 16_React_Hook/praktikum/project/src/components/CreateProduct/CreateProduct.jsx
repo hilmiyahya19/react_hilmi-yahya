@@ -8,6 +8,13 @@ import Modal from '../ui/Modal/Modal';
 import useFormValidation from '../../utils/customHook/useFormValidation';
 
 function CreateProduct() {
+    const [productName, setProductName] = useState('');
+    const [productCategory, setProductCategory] = useState('');
+    const [productImage, setProductImage] = useState('');
+    const [productFreshness, setProductFreshness] = useState("");
+    const [additionalDescription, setAdditionalDescription] = useState('');
+    const [productPrice, setProductPrice] = useState('');
+    
     const [data, setData] = useState([
         {
           id: uuidv4(), 
@@ -150,13 +157,6 @@ function CreateProduct() {
       setAdditionalDescription("");
       setProductPrice("");
     }
-
-    const [productName, setProductName] = useState('');
-    const [productCategory, setProductCategory] = useState('');
-    const [productImage, setProductImage] = useState('');
-    const [productFreshness, setProductFreshness] = useState("");
-    const [additionalDescription, setAdditionalDescription] = useState('');
-    const [productPrice, setProductPrice] = useState('');
 
     const {
         productNameError,
