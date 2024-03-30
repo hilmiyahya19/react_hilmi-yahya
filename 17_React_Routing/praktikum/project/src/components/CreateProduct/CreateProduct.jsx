@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Modal from '../ui/Modal/Modal';
 import useFormValidation from '../../utils/customHook/useFormValidation';
 import { Link } from 'react-router-dom';
+import productData from './productData'; 
 
 function CreateProduct() {
     const [productName, setProductName] = useState('');
@@ -15,35 +16,27 @@ function CreateProduct() {
     const [productFreshness, setProductFreshness] = useState("");
     const [additionalDescription, setAdditionalDescription] = useState('');
     const [productPrice, setProductPrice] = useState('');
-    
-    const [data, setData] = useState([
-        {
-          id: uuidv4(), 
-          productName: "Kaos",
-          productCategory: "Clothing and Accessories",
-          productImage: "kaos.jpg",
-          productFreshness: "brand-new",
-          additionalDescription: "erigo",
-          productPrice: 100000,
-        },
-        {
-          id: uuidv4(), 
-          productName: "Laptop",
-          productCategory: "Electronics and Technology",
-          productImage: "laptop.jpg",
-          productFreshness: "brand-new",
-          additionalDescription: "acer nitro 5",
-          productPrice: 10500000,
-        }, 
-    ]);
 
-    const [editData, setEditData] = useState(null);
+    // useFormValidation
+    const {
+        productNameError,
+        productCategoryError,
+        productImageError,
+        productFreshnessError,
+        additionalDescriptionError,
+        productPriceError,
+        validateForm,
+    } = useFormValidation(
+        productName, productPrice, additionalDescription, productCategory, productFreshness, productImage
+        );
 
+    // productData
+    const [data, setData] = useState(productData);
     useEffect (() => {
         setData(data);
       }, [data]);
 
-    // Saat menyimpan data baru
+    // tambah data
     const addData = (event) => {
         event.preventDefault(); 
 
@@ -90,6 +83,7 @@ function CreateProduct() {
         };
     }
 
+    // hapus data
     const [showModal, setShowModal] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null); // State untuk menyimpan item yang dipilih
 
@@ -110,11 +104,8 @@ function CreateProduct() {
         setShowModal(false); // Menutup modal jika pengguna memilih untuk tidak menghapus
     }
 
-    const [language, setLanguage] = useState('en'); 
-    const handleLanguageChange = () => {
-    setLanguage(language === 'en' ? 'id' : 'en');
-    };
-
+    // edit data
+    const [editData, setEditData] = useState(null);
     const handleEditData = (id, e) => { 
         e.preventDefault();
         const editItem = data.find(item => item.id === id); 
@@ -127,6 +118,7 @@ function CreateProduct() {
         setProductPrice(editItem.productPrice);
     }
 
+    // update data
     const updateData = () => {
         if (productName === '' || productCategory === '' || productImage === '' || productFreshness === '' ||additionalDescription === '' || productPrice === '') {
             alert('Semua data harus diisi');
@@ -159,17 +151,11 @@ function CreateProduct() {
       setProductPrice("");
     }
 
-    const {
-        productNameError,
-        productCategoryError,
-        productImageError,
-        productFreshnessError,
-        additionalDescriptionError,
-        productPriceError,
-        validateForm,
-    } = useFormValidation(
-        productName, productPrice, additionalDescription, productCategory, productFreshness, productImage
-        );
+    // ganti bahasa
+    const [language, setLanguage] = useState('en'); 
+    const handleLanguageChange = () => {
+    setLanguage(language === 'en' ? 'id' : 'en');
+    };
 
     // random number  
     const [count, setCount] = useState('');
