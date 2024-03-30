@@ -7,7 +7,7 @@ function Footer() {
     <footer className="bg-blue-500 p-8">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
         {/* Column 1 */}
-        <div className="mb-4 md:mb-0">
+        <div className="mb-8 md:mb-0">
           <h1 className="text-white text-lg mb-2 font-semibold">My Social Media</h1>
           <p className="text-white mb-4">Connect with me :</p>
           <div className="flex items-center">
@@ -23,7 +23,7 @@ function Footer() {
           </div>
         </div>
         {/* Column 2 */}
-        <div className="mb-4 md:mb-0">
+        <div className="mb-8 md:mb-0">
           <img src={`/img/fire.png`} alt="MyWebsite" className="mr-2 w-8 md:w-12 lg:w-20 h-8 md:h-12 lg:h-20"/>
           <h2 className="text-white text-lg mt-2">MyWebsite</h2>
         </div>

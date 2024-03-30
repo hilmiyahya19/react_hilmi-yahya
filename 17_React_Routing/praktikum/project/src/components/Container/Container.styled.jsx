@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 const ContainerStyled = styled.div`
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
+    margin: 0;
+    padding: 0;
 `;
 
 export default ContainerStyled;

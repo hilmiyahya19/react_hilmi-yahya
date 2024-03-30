@@ -1,9 +1,11 @@
-import Welcome from "../components/Welcome/Welcome"
+import LandingPage from "../components/LandingPage/LandingPage"
+// import Welcome from "../components/Welcome/Welcome"
 
 function Home() {
   return (
     <div>
-      <Welcome/>
+      {/* <Welcome/> */}
+      <LandingPage/>
     </div>
   )
 }

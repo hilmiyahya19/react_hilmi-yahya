@@ -6,6 +6,7 @@ import Button from '../ui/Button/Button';
 import { v4 as uuidv4 } from 'uuid'; 
 import Modal from '../ui/Modal/Modal';
 import useFormValidation from '../../utils/customHook/useFormValidation';
+import { Link } from 'react-router-dom';
 
 function CreateProduct() {
     const [productName, setProductName] = useState('');
@@ -317,6 +318,7 @@ return (
                                 <td className="border px-4 py-2"><strong>Product Price</strong></td>
                                 <td className="border px-4 py-2"><strong>Hapus Data</strong></td>
                                 <td className="border px-4 py-2"><strong>Edit Data</strong></td>  
+                                <td className="border px-4 py-2"><strong>Detail</strong></td>  
                             </tr>
                         </thead>
                         <tbody>
@@ -338,6 +340,12 @@ return (
                                 </td>
                                 <td>
                                     <Button variant='edit' onClick={(e) => handleEditData(item.id, e)}>Edit Data</Button>
+                                </td>
+                                <td>
+                                    {/* Tombol/link untuk mengarahkan ke halaman detail */}
+                                    <Button variant='primary'>
+                                        <Link to={`detail-product/${item.id}`}>Detail Data</Link>
+                                    </Button> 
                                 </td>
                             </tr>
                         ))}
