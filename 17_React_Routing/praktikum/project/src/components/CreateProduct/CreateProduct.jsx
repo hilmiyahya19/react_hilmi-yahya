@@ -10,6 +10,12 @@ import { Link } from 'react-router-dom';
 import productData from './productData'; 
 
 function CreateProduct() {
+    useEffect(() => {
+        // Inisialisasi data produk
+        console.log("Data produk:", productData); // Tambahkan ini untuk memastikan data produk tersedia
+        setData(productData);
+    }, []);
+    
     const [productName, setProductName] = useState('');
     const [productCategory, setProductCategory] = useState('');
     const [productImage, setProductImage] = useState('');
@@ -329,9 +335,9 @@ return (
                                 </td>
                                 <td>
                                     {/* Tombol/link untuk mengarahkan ke halaman detail */}
-                                    <Button variant='primary'>
-                                        <Link to={`detail-product/${item.id}`}>Detail Data</Link>
-                                    </Button> 
+                                    <Link to={`/products/detail-product/${item.id}`}>
+                                        <Button variant='primary'>Detail Data</Button>
+                                    </Link>
                                 </td>
                             </tr>
                         ))}
