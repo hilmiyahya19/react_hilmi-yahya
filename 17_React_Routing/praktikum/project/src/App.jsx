@@ -36,7 +36,8 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/products" element={<CreateProduct data={data} setData={setData} />} />
-                <Route path="/products/detail-product/:id" element={<DetailProduct productData={productData} />} />
+                <Route path="/products/detail-product/:id" element={<DetailProduct 
+                productData={productData} data={data} setData={setData}/>} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contacts" element={<Contacts />} />
               </>

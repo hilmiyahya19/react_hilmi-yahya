@@ -13,14 +13,19 @@
 
 //   return (
 //     <div>
-//       <h1>Detail Product</h1>
-//       <div>
-//         <h2>{selectedProduct.productName}</h2>
-//         <p>Category: {selectedProduct.productCategory}</p>
-//         <p>Freshness: {selectedProduct.productFreshness}</p>
-//         <p>Description: {selectedProduct.additionalDescription}</p>
-//         <p>Price: {selectedProduct.productPrice}</p>
-//         <img src={selectedProduct.productImage} alt={selectedProduct.productName} />
+//       <div className="max-w-4xl mx-auto px-4 py-8">
+//         <h1 className="text-3xl font-bold mb-4">Detail Product</h1>
+//         <div className="bg-white shadow-md rounded-md p-6">
+//           <h2 className="text-xl font-semibold mb-2">{selectedProduct.productName}</h2>
+//           <p className="text-gray-600 mb-2">Category: {selectedProduct.productCategory}</p>
+//           <p className="text-gray-600 mb-2">Freshness: {selectedProduct.productFreshness}</p>
+//           <p className="text-gray-600 mb-2">Description: {selectedProduct.additionalDescription}</p>
+//           <p className="text-gray-600 mb-4">Price: {selectedProduct.productPrice}</p>
+//           {/* Tampilkan gambar produk */}
+//           <div className="flex justify-center">
+//             <img src={selectedProduct.productImage} alt={selectedProduct.productName} className="max-w-full h-auto"/>
+//           </div>
+//         </div>
 //       </div>
 //     </div>
 //   );
@@ -35,7 +40,7 @@
 //     productImage: PropTypes.string.isRequired,
 //     productFreshness: PropTypes.string.isRequired,
 //     additionalDescription: PropTypes.string.isRequired,
-//     productPrice: PropTypes.string.isRequired,
+//     productPrice: PropTypes.number.isRequired,
 //   })).isRequired,
 // };
 
@@ -72,7 +77,7 @@ function DetailProduct({ productData }) {
           <p className="text-gray-600 mb-4">Price: {selectedProduct.productPrice}</p>
           {/* Tampilkan gambar produk */}
           <div className="flex justify-center">
-            <img src={selectedProduct.productImage} alt={selectedProduct.productName} className="max-w-full h-auto" />
+            <img src={selectedProduct.productImage} alt={selectedProduct.productName} className="max-w-full h-auto"/>
           </div>
         </div>
       </div>
