@@ -20,7 +20,8 @@
 //           <p className="text-gray-600 mb-2">Category: {selectedProduct.productCategory}</p>
 //           <p className="text-gray-600 mb-2">Freshness: {selectedProduct.productFreshness}</p>
 //           <p className="text-gray-600 mb-2">Description: {selectedProduct.additionalDescription}</p>
-//           <p className="text-gray-600 mb-4">Price: {selectedProduct.productPrice}</p>
+//           <p className="text-gray-600 mb-2">Price: {selectedProduct.productPrice}</p>
+//           <p className="text-gray-600 mb-4">id: {selectedProduct.id}</p>
 //           {/* Tampilkan gambar produk */}
 //           <div className="flex justify-center">
 //             <img src={selectedProduct.productImage} alt={selectedProduct.productName} className="max-w-full h-auto"/>
@@ -74,7 +75,8 @@ function DetailProduct({ productData }) {
           <p className="text-gray-600 mb-2">Category: {selectedProduct.productCategory}</p>
           <p className="text-gray-600 mb-2">Freshness: {selectedProduct.productFreshness}</p>
           <p className="text-gray-600 mb-2">Description: {selectedProduct.additionalDescription}</p>
-          <p className="text-gray-600 mb-4">Price: {selectedProduct.productPrice}</p>
+          <p className="text-gray-600 mb-2">Price: {selectedProduct.productPrice}</p>
+          <p className="text-gray-600 mb-4">id: {selectedProduct.id}</p>
           {/* Tampilkan gambar produk */}
           <div className="flex justify-center">
             <img src={selectedProduct.productImage} alt={selectedProduct.productName} className="max-w-full h-auto"/>
