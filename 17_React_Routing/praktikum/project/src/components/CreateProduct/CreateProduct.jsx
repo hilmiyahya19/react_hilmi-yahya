@@ -8,13 +8,10 @@ import Modal from '../ui/Modal/Modal';
 import useFormValidation from '../../utils/customHook/useFormValidation';
 import { Link } from 'react-router-dom';
 import productData from './productData'; 
-// import { useParams } from 'react-router-dom';
 
 function CreateProduct() {
-    // const { id } = useParams();
     useEffect(() => {
-        // Inisialisasi data produk
-        console.log("Data produk:", productData); // Tambahkan ini untuk memastikan data produk tersedia
+        console.log("Data produk:", productData); // memastikan data produk tersedia
         setData(productData);
     }, []);
     
