@@ -56,6 +56,10 @@ const Login = ({ onLogin }) => {
           <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-md focus:outline-none hover:bg-blue-600 focus:bg-blue-600">
             Login
           </button>
+        <div className="text-gray-600 mt-4">
+          <p className="mb-1">Username : admin</p>
+          <p>Password : admin</p>
+        </div>
       </form>
     </div>
   );
