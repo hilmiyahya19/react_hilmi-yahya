@@ -34,7 +34,7 @@ function DetailProduct({ productData }) {
           <p className="text-gray-600 mb-4">id: {selectedProduct.id}</p>
           {/* Tampilkan gambar produk */}
           <div className="flex justify-center">
-            <img src={selectedProduct.productImage} alt={selectedProduct.productName} className="max-w-full h-auto"/>
+            <img src={selectedProduct.productImage} alt={selectedProduct.productName} className="max-w-96 h-auto"/>
           </div>
         </div>
       </div>
