@@ -5,7 +5,7 @@ export default function PrivateComponent() {
   const isAuthenticated = localStorage.getItem("isAuthenticated");
 
   if (isAuthenticated == "false") {
-    return <Navigate to="/login" />;
+    return <Navigate to="/welcome" />;
   }
 
   return <Outlet />; // Render nested routes

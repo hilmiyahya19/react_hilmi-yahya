@@ -38,7 +38,7 @@ function Login () {
   }, []); // [isAuthenticated, navigate] Menambahkan navigate ke dalam dependensi
 
   return (
-    <div className="flex h-screen justify-center items-center bg-gray-200">
+    <div className="flex h-screen justify-center items-center">
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold mb-4">Login</h2>
         {error && <p className="text-red-500 mb-2">{error}</p>} {/* Tampilkan pesan kesalahan */}

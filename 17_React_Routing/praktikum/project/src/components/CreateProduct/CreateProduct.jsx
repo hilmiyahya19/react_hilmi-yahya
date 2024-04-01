@@ -272,7 +272,7 @@ return (
 
                 {/* Modal konfirmasi */}
                 {showModal && (
-                <Modal>
+                <Modal show={showModal}>
                     <div className="text-center">
                         <h2 className="text-xl font-semibold">apakah anda yakin ingin menghapus data ini?</h2>
                         <div className="mt-4">

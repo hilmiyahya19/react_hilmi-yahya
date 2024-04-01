@@ -1,38 +1,20 @@
+import { Link } from "react-router-dom";
+
 function Welcome() {
   return (
-    <>
-    <section className="items-center mt-5 md:mt-10 lg:mt-20 mb-10 md:mb-16 lg:mb-28">
-      <div className="mx-auto items-center flex flex-wrap">
-        <div className="md:w-full lg:w-full xl:w-11/12 px-4"> 
-          <div className="flex flex-wrap md:flex-nowrap">
-            {/* hero bagian kiri */}
-            <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 pt-0 sm:pt-0 md:pt-5 lg:pt-10 mx-2"> 
-              <h2 className="font-semibold text-4xl">
-                Welcome to MyWebsite
-              </h2>
-              <p className="mt-4 text-lg">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam itaque eaque tempora mollitia veniam repudiandae nisi, ratione in facilis natus, recusandae, nam vel perferendis commodi ipsum cumque? Eius, tempora qui?
-              </p>
-              <div className="mt-12">
-                <button className="text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 uppercase text-sm shadow hover:shadow-lg">
-                  Get started
-                </button>
-                <button className="ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 uppercase text-sm shadow hover:shadow-lg">
-                  Learn More
-                </button>
-              </div>
-            </div>
-            {/* hero bagian kanan */}
-            <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 pt-10 mx-5 flex items-center"> 
-              <img src={`/img/su.png`} className="rounded-lg w-full"/> 
-            </div>
-          </div>
+    <div className="min-h-screen flex justify-center items-center">
+      <div className="max-w-4xl mx-auto p-8 bg-white shadow-lg rounded-lg">
+        <h1 className="text-4xl font-bold text-center mb-8">Welcome to Our Website</h1>
+        <p className="text-lg text-gray-700 mb-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet libero vel justo commodo dapibus.</p>
+        <div className="flex justify-center">
+          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">Sign Up</button>
+          <Link to={'/login'}>
+            <button className="ml-4 bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">Log In</button>
+          </Link>
         </div>
       </div>
-    </section>
-    </>
+    </div>
   );
 }
 
 export default Welcome;
-

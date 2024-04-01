@@ -10,7 +10,8 @@ const Modal = ({ children, show }) => {
 
 Modal.propTypes = {
     children: PropTypes.node.isRequired,
-    show: PropTypes.bool.isRequired // Tambahkan properti show sebagai boolean yang diperlukan
+    show: PropTypes.bool.isRequired 
 };
 
 export default Modal;
+

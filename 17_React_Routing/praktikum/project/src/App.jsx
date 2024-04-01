@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./Layout/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -14,8 +14,8 @@ import Login from "./components/Login/Login";
 import NotFound from "./components/NotFound/NotFound";
 import PublicComponent from "./components/PublicComponent/PublicComponent";
 import PrivateComponent from "./components/PrivateComponent/privateComponent";
-import Example from "./components/Example/Example";
 import Logout from "./components/Logout/Logout";
+import Welcome from "./components/Welcome/Welcome";
 
 function App() {
   const [data, setData] = useState([]);
@@ -37,7 +37,9 @@ function App() {
             </Route>
           {/* public untuk semua orang */}
             <Route path="/" element={<PublicComponent />}>
-              <Route path="/example" element={<Example/>}/>
+               {/* mengarahkan pengguna ke halaman "welcome" ketika mereka membuka aplikasi */}
+              <Route index element={<Navigate to="/welcome" replace />} /> 
+              <Route path="/welcome" element={<Welcome/>}/>
               <Route path="/login" element={<Login />} />
             </Route>
           

@@ -14,8 +14,8 @@ function Logout() {
  const handleLogout = () => {
     // Hapus status autentikasi dari local storage
     localStorage.setItem("isAuthenticated", "false");
-    // Arahkan pengguna ke halaman login
-    navigate("/login");
+    // Arahkan pengguna ke halaman welcome
+    navigate("/welcome");
  };
 
  const handleCloseModal = (event) => {
@@ -31,12 +31,16 @@ function Logout() {
 
  return (
     <div>
-      <h1>Selamat datang di halaman logout</h1>
-      <Button onClick={handleShowModal}>Logout</Button>
+      <div className="text-center mt-5">
+        <h1 className="text-4xl font-semibold">Halaman Logout</h1>
+      </div>
+      <div className="flex justify-center mt-5 mb-5">
+        <Button onClick={handleShowModal}>Logout</Button>
+      </div>
 
       {/* Modal untuk konfirmasi logout */}
       <Modal show={showModal} onClose={handleCloseModal} backdrop={true}>
-        <h2>Anda yakin ingin logout?</h2>
+        <h2>Apakah anda yakin ingin logout?</h2>
         <div className="flex justify-end mt-4">
           <Button className="mr-4" onClick={handleCloseModal}>
             Batal

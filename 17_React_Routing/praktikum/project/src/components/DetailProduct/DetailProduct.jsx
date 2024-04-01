@@ -17,7 +17,14 @@ function DetailProduct({ productData }) {
 
   // Pastikan produk ditemukan sebelum menampilkan detailnya
   if (!selectedProduct) {
-    return <div>Product not found</div>;
+    return <div>
+        <h1 className='mt-5 mb-5 text-2xl text-center font-semibold'>
+          Product not found
+        </h1>
+        <div className='flex justify-center mb-6'>
+          <Button onClick={goBack}>Go Back</Button>
+        </div>
+      </div>;
   }
 
   // Tampilkan detail produk
