@@ -1,10 +1,15 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types'; 
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Login = ({ onLogin }) => {
+function Login () {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [loginError, setLoginError] = useState(false);
+  const [error, setError] = useState(''); // State untuk menangani pesan kesalahan
+  const navigate = useNavigate();
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
+
+  // Menggunakan useState untuk mengelola isAuthenticated sebagai state
+  // const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("isAuthenticated") === "true");
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -18,17 +23,25 @@ const Login = ({ onLogin }) => {
     e.preventDefault();
     // Di sini Anda dapat menambahkan logika untuk memeriksa kredensial, misalnya dengan menyimpannya di state atau memanggil API
     if (username === 'admin' && password === 'admin') {
-      onLogin(); // Panggil fungsi onLogin jika kredensial benar
-    } else {
-      setLoginError(true);
+      localStorage.setItem("isAuthenticated", "true");
+      // setIsAuthenticated(true); // Memperbarui state isAuthenticated
+      navigate("/home"); 
+  } else {
+    setError('Invalid username or password'); // Set pesan kesalahan
+  }}
+
+  useEffect(() => {
+    if (isAuthenticated == "true") {
+      console.log("anda sudah login");
+      navigate("/home"); 
     }
-  };
+  }, []); // [isAuthenticated, navigate] Menambahkan navigate ke dalam dependensi
 
   return (
     <div className="flex h-screen justify-center items-center bg-gray-200">
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold mb-4">Login</h2>
-        {loginError && <p className="text-red-500 mb-2">Invalid username or password</p>}
+        {error && <p className="text-red-500 mb-2">{error}</p>} {/* Tampilkan pesan kesalahan */}
         <div className="mb-4">
           <label htmlFor="username" className="block text-gray-700 font-semibold mb-2">Username</label>
           <input
@@ -63,10 +76,6 @@ const Login = ({ onLogin }) => {
       </form>
     </div>
   );
-};
-
-Login.propTypes = {
-  onLogin: PropTypes.func.isRequired, 
-};
+}
 
 export default Login;
