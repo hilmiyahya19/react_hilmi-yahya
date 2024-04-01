@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 function NavItem({ to, children, currentPath }) {
   const isActive = currentPath === to;
@@ -15,5 +16,11 @@ function NavItem({ to, children, currentPath }) {
     </li>
   );
 }
+
+NavItem.propTypes = {
+  to: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  currentPath: PropTypes.string.isRequired
+};
 
 export default NavItem;
