@@ -4,12 +4,12 @@ import NavItem from './NavItem';
 
 function Navbar() {
  const location = useLocation();
- const isAuthenticated = localStorage.getItem("isAuthenticated") === "false";
+ const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
  const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
- };
+  };
 
  return (
     <>
@@ -24,16 +24,16 @@ function Navbar() {
                 <ul className="space-x-3 hidden md:flex lg:flex">
                  {isAuthenticated ? (
                     <>
-                      <NavItem to="/welcome" currentPath={location.pathname}>Welcome</NavItem>
-                      <NavItem to="/login" currentPath={location.pathname}>Login</NavItem>
-                   </>
-                 ) : (
-                    <>
                       <NavItem to="/home" currentPath={location.pathname}>Home</NavItem>
                       <NavItem to="/products" currentPath={location.pathname}>Products</NavItem>
                       <NavItem to="/about" currentPath={location.pathname}>About</NavItem>
                       <NavItem to="/contacts" currentPath={location.pathname}>Contacts</NavItem>
-                      <NavItem to="/logout" currentPath={location.pathname}>Logout</NavItem>
+                      <NavItem to="/logout" currentPath={location.pathname}>Logout</NavItem> 
+                   </>
+                 ) : (
+                    <>
+                      <NavItem to="/welcome" currentPath={location.pathname}>Welcome</NavItem>
+                      <NavItem to="/login" currentPath={location.pathname}>Login</NavItem>
                     </>
                  )}
                 </ul>

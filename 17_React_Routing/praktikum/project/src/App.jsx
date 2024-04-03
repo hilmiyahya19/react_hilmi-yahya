@@ -18,21 +18,29 @@ import Logout from "./components/Logout/Logout";
 import Welcome from "./components/Welcome/Welcome";
 
 function App() {
+  // isAuthenticated === true = <PrivateComponent/> 
+  // isAuthenticated === false = <PublicComponent/> 
+
   const [data, setData] = useState([]);
+
+  // At the start of your application, or before rendering the App component
+  if (localStorage.getItem('isAuthenticated') === null) {
+    localStorage.setItem('isAuthenticated', 'false');
+  }
   
   return (
     <div> 
       <ThemeProvider theme={theme}>
         <Layout>
         <Routes>
-            {/* public untuk semua orang */}
+          {/* Public routes */}
             <Route path="/" element={<PublicComponent />}>
               {/* mengarahkan pengguna ke halaman "welcome" ketika mereka membuka aplikasi */}
               <Route index element={<Navigate to="/welcome" replace />} /> 
               <Route path="/welcome" element={<Welcome/>}/>
               <Route path="/login" element={<Login />} />
-            </Route>
-            {/* private untuk super admin */}
+            </Route> 
+          {/* Private routes */}
             <Route path="/" element={<PrivateComponent />}>
               <Route path="/home" element={<Home/>} />
               <Route path="/products" element={<CreateProduct data={data} setData={setData} />} />
@@ -42,6 +50,7 @@ function App() {
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/logout" element={<Logout/>} />
             </Route>
+          {/* Not found */}
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Layout>

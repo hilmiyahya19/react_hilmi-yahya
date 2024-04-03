@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import tailwind from '/src/assets/tailwind.png'
 import article from '../../articleData';
 import Alert from '../Alert/Alert';
@@ -21,6 +21,8 @@ function CreateProduct() {
     const [productFreshness, setProductFreshness] = useState("");
     const [additionalDescription, setAdditionalDescription] = useState('');
     const [productPrice, setProductPrice] = useState('');
+
+    const productImageRef = useRef(null);
 
     // useFormValidation
     const {
@@ -69,7 +71,7 @@ function CreateProduct() {
                 id: uuidv4(), 
                 productName,
                 productCategory,
-                productImage: base64String,
+                productImage:base64String, 
                 productFreshness,
                 additionalDescription,
                 productPrice,
@@ -82,6 +84,8 @@ function CreateProduct() {
         setProductName("");
         setProductCategory("");
         setProductImage(""); 
+        productImageRef.current.value = ''; // Reset nilai input file
+        // URL.revokeObjectURL(file); // Menghapus URL gambar dari memori
         setProductFreshness("");
         setAdditionalDescription("");
         setProductPrice("");
@@ -130,31 +134,38 @@ function CreateProduct() {
             return;
     }
 
-    const updatedData = data.map(item => {
-        if (item.id === editData.id) {
-          return {
-            id: item.id, 
-            productName: productName,
-            productCategory: productCategory,
-            productImage: productImage,
-            productFreshness: productFreshness,
-            additionalDescription: additionalDescription,
-            productPrice: productPrice,
-          };
-        }
-        return item;
-      });
+        const reader = new FileReader();
+        reader.readAsDataURL(productImage);
+        reader.onloadend = () => {
+            const base64String = reader.result;
+            const updatedData = data.map(item => {
+                if (item.id === editData.id) {
+                    return {
+                        ...item,
+                        productName,
+                        productCategory,
+                        productImage: base64String, // Menggunakan gambar baru
+                        productFreshness,
+                        additionalDescription,
+                        productPrice,
+                    };
+                }
+            return item;
+          });
   
-      setData(updatedData);
+        setData(updatedData);
   
-      setEditData(null);
-      setProductName("");
-      setProductCategory("");
-      setProductImage("");
-      setProductFreshness("");
-      setAdditionalDescription("");
-      setProductPrice("");
-    }
+        setEditData(null);
+        setProductName("");
+        setProductCategory("");
+        setProductImage("");
+        productImageRef.current.value = ''; // Reset nilai input file
+        // URL.revokeObjectURL(productImage); // Menghapus URL gambar dari memori
+        setProductFreshness("");
+        setAdditionalDescription("");
+        setProductPrice("");
+        };
+    };
 
     // ganti bahasa
     const [language, setLanguage] = useState('en'); 
@@ -216,7 +227,8 @@ return (
                         <div className="mt-4">
                             <h3 htmlFor="productImage" className="block mb-2">Image of Product</h3>
                             <input id="productImage" type="file" className="form-input mt-1 block w-full" 
-                            onChange={(e) => setProductImage(URL.createObjectURL(e.target.files[0]))}/>
+                            onChange={(e) => setProductImage(e.target.files[0])} ref={productImageRef}/>
+                            {/* onChange={(e) => setProductImage(URL.createObjectURL(e.target.files[0]))} */}
                             {productImageError && <small className="text-red-500">{productImageError}</small>}
                         </div>
                         <div className="mt-5">
