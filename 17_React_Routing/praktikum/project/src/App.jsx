@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Layout from "./Layout/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -35,8 +35,6 @@ function App() {
         <Routes>
           {/* Public routes */}
             <Route path="/" element={<PublicComponent />}>
-              {/* mengarahkan pengguna ke halaman "welcome" ketika mereka membuka aplikasi */}
-              <Route index element={<Navigate to="/welcome" replace />} /> 
               <Route path="/welcome" element={<Welcome/>}/>
               <Route path="/login" element={<Login />} />
             </Route> 
