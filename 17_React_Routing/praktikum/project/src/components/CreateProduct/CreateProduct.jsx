@@ -216,7 +216,7 @@ return (
                         <div className="mt-4">
                             <h3 htmlFor="productImage" className="block mb-2">Image of Product</h3>
                             <input id="productImage" type="file" className="form-input mt-1 block w-full" 
-                            onChange={(e) => setProductImage(e.target.files[0])}/>
+                            onChange={(e) => setProductImage(URL.createObjectURL(e.target.files[0]))}/>
                             {productImageError && <small className="text-red-500">{productImageError}</small>}
                         </div>
                         <div className="mt-5">
