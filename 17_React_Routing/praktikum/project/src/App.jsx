@@ -25,8 +25,15 @@ function App() {
       <ThemeProvider theme={theme}>
         <Layout>
         <Routes>
-          {/* private untuk super admin */}
-          <Route path="/" element={<PrivateComponent />}>
+            {/* public untuk semua orang */}
+            <Route path="/" element={<PublicComponent />}>
+              {/* mengarahkan pengguna ke halaman "welcome" ketika mereka membuka aplikasi */}
+              <Route index element={<Navigate to="/welcome" replace />} /> 
+              <Route path="/welcome" element={<Welcome/>}/>
+              <Route path="/login" element={<Login />} />
+            </Route>
+            {/* private untuk super admin */}
+            <Route path="/" element={<PrivateComponent />}>
               <Route path="/home" element={<Home/>} />
               <Route path="/products" element={<CreateProduct data={data} setData={setData} />} />
               <Route path="/products/detail-product/:id" element={<DetailProduct 
@@ -35,14 +42,6 @@ function App() {
               <Route path="/contacts" element={<Contacts />} />
               <Route path="/logout" element={<Logout/>} />
             </Route>
-          {/* public untuk semua orang */}
-            <Route path="/" element={<PublicComponent />}>
-               {/* mengarahkan pengguna ke halaman "welcome" ketika mereka membuka aplikasi */}
-              <Route index element={<Navigate to="/welcome" replace />} /> 
-              <Route path="/welcome" element={<Welcome/>}/>
-              <Route path="/login" element={<Login />} />
-            </Route>
-          
           <Route path="*" element={<NotFound />} />
         </Routes>
         </Layout>
