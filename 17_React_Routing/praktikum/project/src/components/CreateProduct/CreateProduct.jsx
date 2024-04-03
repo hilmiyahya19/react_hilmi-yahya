@@ -184,7 +184,7 @@ function CreateProduct() {
 return (
     <>
         <Alert/>
-        <section className="mt-5 md:mt-8 lg:mt-10 mx-5 sm:mx-5 md:mx-20 lg:mx-52">
+        <section className="mt-16 md:mt-20 lg:mt-20 mx-5 sm:mx-5 md:mx-20 lg:mx-52">
             <div className="text-center">
                 <img className="w-16 h-auto mx-auto" src={tailwind} alt="tailwind"/>
             </div>
