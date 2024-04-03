@@ -211,7 +211,8 @@ return (
                         </div>
                         <div className="mt-4">
                             <h3 htmlFor="productCategory" className="block mb-2">Product Category</h3>
-                            <select id="productCategory" className="form-select mt-1 block w-full  focus:outline-none border rounded-md" value={productCategory} 
+                            <select id="productCategory" className="form-select mt-1 block w-full  focus:outline-none border rounded-md py-1 focus:border-blue-300" 
+                            value={productCategory} 
                             onChange={(e) => setProductCategory(e.target.value)}>
                                 <option disabled value="">Choose...</option>
                                 <option value="Clothing and Accessories">Clothing and Accessories</option>
