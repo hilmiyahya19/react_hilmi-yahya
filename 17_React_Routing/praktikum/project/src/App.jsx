@@ -39,7 +39,7 @@ function App() {
               <Route path="/login" element={<Login />} />
             </Route> 
           {/* Private routes */}
-            <Route path="/" element={<PrivateComponent />}>
+            <Route path="/a" element={<PrivateComponent />}>
               <Route path="/home" element={<Home/>} />
               <Route path="/products" element={<CreateProduct data={data} setData={setData} />} />
               <Route path="/products/detail-product/:id" element={<DetailProduct 
