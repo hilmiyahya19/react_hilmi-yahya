@@ -7,6 +7,11 @@ export default defineConfig({
   build: {
     rollupOptions: {
       external: ['react-router-dom'],
-    },
-  },
+      output: {
+        globals: {
+          'react-router-dom': 'ReactRouterDOM' // Pastikan Anda mengganti 'ReactRouterDOM' dengan variabel global yang sesuai jika Anda menggunakan bundler lain atau memanggil 'react-router-dom' secara berbeda.
+        }
+      }
+    }
+  }
 })
