@@ -128,11 +128,22 @@ function CreateProduct() {
     }
 
     // update data
-    const updateData = () => {
-        if (productName === '' || productCategory === '' || productImage === '' || productFreshness === '' ||additionalDescription === '' || productPrice === '') {
-            alert('Semua data harus diisi');
+    const updateData = (event) => {
+        event.preventDefault();
+        
+        const isValid = validateForm(
+            productName,
+            productCategory,
+            productImage,
+            productFreshness,
+            additionalDescription,
+            productPrice
+        );
+
+        if (!isValid) {
+            alert('Please enter valid data');
             return;
-    }
+        }
 
         const reader = new FileReader();
         reader.readAsDataURL(productImage);
