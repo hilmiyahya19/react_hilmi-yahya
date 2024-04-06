@@ -16,6 +16,7 @@ import PublicComponent from "./components/PublicComponent/PublicComponent";
 import PrivateComponent from "./components/PrivateComponent/privateComponent";
 import Logout from "./components/Logout/Logout";
 import Welcome from "./components/Welcome/Welcome";
+import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 
 function App() {
   // isAuthenticated === true = <PrivateComponent/> 
@@ -37,6 +38,7 @@ function App() {
             <Route path="/" element={<PublicComponent />}>
               <Route path="/welcome" element={<Welcome/>}/>
               <Route path="/login" element={<Login />} />
+              <Route path="/registration" element={<RegistrationForm />} />
             </Route> 
           {/* Private routes */}
             <Route path="/" element={<PrivateComponent />}>

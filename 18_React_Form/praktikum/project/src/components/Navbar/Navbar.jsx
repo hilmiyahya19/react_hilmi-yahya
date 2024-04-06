@@ -34,6 +34,7 @@ function Navbar() {
                     <>
                       <NavItem to="/welcome" currentPath={location.pathname}>Welcome</NavItem>
                       <NavItem to="/login" currentPath={location.pathname}>Login</NavItem>
+                      <NavItem to="/registration" currentPath={location.pathname}>Registration</NavItem>
                     </>
                  )}
                 </ul>
@@ -60,6 +61,7 @@ function Navbar() {
                  <>
                     <NavItem to="/welcome" currentPath={location.pathname}>Welcome</NavItem>
                     <NavItem to="/login" currentPath={location.pathname}>Login</NavItem>
+                    <NavItem to="/registration" currentPath={location.pathname}>Registration</NavItem>
                  </>
                 )}
               </ul>

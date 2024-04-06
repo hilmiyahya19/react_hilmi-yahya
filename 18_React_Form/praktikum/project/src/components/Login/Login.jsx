@@ -1,18 +1,15 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Login () {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(''); // State untuk menangani pesan kesalahan
+  const [error, setError] = useState(''); 
   const navigate = useNavigate();
   const isAuthenticated = localStorage.getItem("isAuthenticated");
 
-  // Menggunakan useState untuk mengelola isAuthenticated sebagai state
-  // const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("isAuthenticated") === "true");
-
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+  const handleemailChange = (e) => {
+    setEmail(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
@@ -21,36 +18,52 @@ function Login () {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Di sini Anda dapat menambahkan logika untuk memeriksa kredensial, misalnya dengan menyimpannya di state atau memanggil API
-    if (username === 'admin' && password === 'admin') {
+  
+    // Periksa manual email dan password terlebih dahulu
+    if (email === 'admin@gmail.com' && password === 'admin') {
       localStorage.setItem("isAuthenticated", "true");
-      // setIsAuthenticated(true); // Memperbarui state isAuthenticated
       navigate("/home"); 
-  } else {
-    setError('Invalid username or password'); // Set pesan kesalahan
-  }}
+      return;
+    }
+  
+    // Periksa data dari formulir registrasi
+    const registrationData = JSON.parse(localStorage.getItem('registrationData'));
+    if (registrationData && email === registrationData.email && password === registrationData.password) {
+      localStorage.setItem("isAuthenticated", "true");
+      navigate("/home"); 
+    } else {
+      setError('Invalid email or password'); 
+    }
+  }  
 
   useEffect(() => {
     if (isAuthenticated == "true") {
       console.log("anda sudah login");
       navigate("/home"); 
     }
-  }, []); // [isAuthenticated, navigate] Menambahkan navigate ke dalam dependensi
+
+    const registrationData = JSON.parse(localStorage.getItem('registrationData'));
+    if (registrationData) {
+      setEmail(registrationData.email);
+      setPassword(registrationData.password);
+    }
+
+  }, []); 
 
   return (
     <div className="flex h-screen justify-center items-center">
-      <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md">
+      <form onSubmit={handleSubmit} className="p-8 rounded-lg shadow-xl">
         <h2 className="text-2xl font-semibold mb-4">Login</h2>
         {error && <p className="text-red-500 mb-2">{error}</p>} {/* Tampilkan pesan kesalahan */}
         <div className="mb-4">
-          <label htmlFor="username" className="block text-gray-700 font-semibold mb-2">Username</label>
+          <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">Email</label>
           <input
-            type="text"
-            id="username"
+            type="email"
+            id="email"
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
-            placeholder="Enter your username"
-            value={username}
-            onChange={handleUsernameChange}
+            placeholder="Enter your email"
+            value={email}
+            onChange={handleemailChange}
             required
           />
         </div>
@@ -69,9 +82,10 @@ function Login () {
           <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-md focus:outline-none hover:bg-blue-600 focus:bg-blue-600">
             Login
           </button>
-        <div className="text-gray-600 mt-4">
-          <p className="mb-1">Username : admin</p>
-          <p>Password : admin</p>
+        <div className=" mt-4">
+          <p>Do not have an account? 
+            <span className="text-blue-500"><Link to="/registration"> Register now</Link></span>
+          </p>
         </div>
       </form>
     </div>

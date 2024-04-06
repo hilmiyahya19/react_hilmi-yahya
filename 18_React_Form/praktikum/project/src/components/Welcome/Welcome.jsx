@@ -7,9 +7,11 @@ function Welcome() {
         <h1 className="text-4xl font-bold text-center mb-8">Welcome to My Website</h1>
         <p className="text-lg text-gray-700 mb-8">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet libero vel justo commodo dapibus.</p>
         <div className="flex justify-center">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">Sign Up</button>
           <Link to={'/login'}>
-            <button className="ml-4 bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">Log In</button>
+            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">Login</button>
+          </Link>
+          <Link to={'/registration'}>
+            <button className="ml-4 bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline">Registration</button>
           </Link>
         </div>
       </div>
