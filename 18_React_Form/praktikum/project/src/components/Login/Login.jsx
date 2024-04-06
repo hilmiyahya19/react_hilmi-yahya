@@ -53,10 +53,10 @@ function Login () {
   return (
     <div className="flex h-screen justify-center items-center">
       <form onSubmit={handleSubmit} className="p-8 rounded-lg shadow-xl">
-        <h2 className="text-2xl font-semibold mb-4">Login</h2>
+        <h2 className="text-3xl font-semibold mb-4">Login</h2>
         {error && <p className="text-red-500 mb-2">{error}</p>} {/* Tampilkan pesan kesalahan */}
         <div className="mb-4">
-          <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">Email</label>
+          <label htmlFor="email" className="block font-semibold mb-2">Email</label>
           <input
             type="email"
             id="email"
@@ -68,7 +68,7 @@ function Login () {
           />
         </div>
         <div className="mb-6">
-          <label htmlFor="password" className="block text-gray-700 font-semibold mb-2">Password</label>
+          <label htmlFor="password" className="block font-semibold mb-2">Password</label>
           <input
             type="password"
             id="password"
