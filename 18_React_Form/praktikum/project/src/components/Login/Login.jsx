@@ -16,6 +16,12 @@ function Login () {
     setPassword(e.target.value);
   };
 
+  // Fungsi untuk mengatur nilai form data menjadi kosong
+  const dataKosong = () => {
+    setEmail("");
+    setPassword("");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
   
@@ -23,6 +29,7 @@ function Login () {
     if (email === 'admin@gmail.com' && password === 'admin') {
       localStorage.setItem("isAuthenticated", "true");
       navigate("/home"); 
+      dataKosong(); // Setel nilai formData menjadi kosong dengan menggunakan fungsi dataKosong
       return;
     }
   
@@ -31,6 +38,7 @@ function Login () {
     if (registrationData && email === registrationData.email && password === registrationData.password) {
       localStorage.setItem("isAuthenticated", "true");
       navigate("/home"); 
+      dataKosong(); // Setel nilai formData menjadi kosong dengan menggunakan fungsi dataKosong
     } else {
       setError('Invalid email or password'); 
     }

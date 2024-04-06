@@ -20,6 +20,16 @@ function RegistrationForm() {
         setFormData({...formData, [name] : value })
     }
 
+    // Fungsi untuk mengatur nilai form data menjadi kosong
+    const dataKosong = () => ({
+        firstName:"",
+        lastName:"",
+        username:"",
+        email:"",
+        password:"",
+        confirmPassword:"",
+    });
+
     const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -50,15 +60,8 @@ function RegistrationForm() {
             // menampilkan data registrasi pada console
             alert("Registration successful");
             console.log("data : ", formData);
-            // Setel nilai formData menjadi kosong
-            setFormData({
-                firstName:"",
-                lastName:"",
-                username:"",
-                email:"",
-                password:"",
-                confirmPassword:"",
-            });
+            // Setel nilai formData menjadi kosong dengan menggunakan fungsi dataKosong
+            setFormData(dataKosong());
             // Hapus pesan kesalahan
             setError("");
         }

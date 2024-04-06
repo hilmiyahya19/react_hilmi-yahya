@@ -57,7 +57,7 @@ function CreateProduct() {
         );
 
         if (!isValid) {
-            alert('Semua data harus diisi');
+            alert('Please enter valid data');
             return;
         }
 

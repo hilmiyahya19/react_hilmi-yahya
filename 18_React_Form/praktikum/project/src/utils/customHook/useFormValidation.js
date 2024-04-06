@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 const useFormValidation = (
     productName, productPrice, additionalDescription, productCategory, productFreshness, productImage
@@ -10,13 +10,18 @@ const useFormValidation = (
     const [additionalDescriptionError, setAdditionalDescriptionError] = useState('');
     const [productPriceError, setProductPriceError] = useState('');
 
+    // Regex untuk memeriksa apakah string hanya terdiri dari huruf dan spasi
+    const regex = useMemo(() => /^[A-Za-z ]*$/, []); 
+
     useEffect(() => {
         if (productName.length > 10) {
             setProductNameError('Product name cannot exceed 10 characters');
+        } else if (!regex.test(productName)) {
+            setProductNameError('Product name must contain only letters and spaces');
         } else {
             setProductNameError('');
         }
-    }, [productName]);
+    }, [productName, regex]);
 
     useEffect(() => {
         if (productPrice.length > 9) {
@@ -29,10 +34,12 @@ const useFormValidation = (
     useEffect(() => {
         if (additionalDescription.length > 50) {
             setAdditionalDescriptionError('Additional description cannot exceed 50 characters');
+        } else if (!regex.test(additionalDescription)) {
+            setAdditionalDescriptionError('Additional description must contain only letters and spaces');
         } else {
             setAdditionalDescriptionError('');
         }
-    }, [additionalDescription]);
+    }, [additionalDescription, regex]);
     
     useEffect(() => {
         if (productCategory) {
@@ -52,50 +59,60 @@ const useFormValidation = (
         }
     }, [productImage]);
 
-    const validateForm = (productName, productCategory, productImage, productFreshness, additionalDescription, productPrice) => {
+    const validateForm = () => {
+        let isValid = true;
+
         if (!productName) {
             setProductNameError('Product Name must be filled in');
+            isValid = false;
+        } else if (productName.length > 10 || !regex.test(productName)) {
+            setProductNameError('Product name must contain only letters and spaces and cannot exceed 10 characters');
+            isValid = false;
         } else {
             setProductNameError('');
         }
 
         if (!productCategory) {
             setProductCategoryError('Product Category must be filled in');
+            isValid = false;
         } else {
             setProductCategoryError('');
         }
 
         if (!productImage) {
             setProductImageError('Product Image must be filled in');
+            isValid = false;
         } else {
             setProductImageError('');
         }
 
         if (!productFreshness) {
             setProductFreshnessError('Product Freshness must be filled in');
+            isValid = false;
         } else {
             setProductFreshnessError('');
         }
 
         if (!additionalDescription) {
             setAdditionalDescriptionError('Additional Description must be filled in');
+            isValid = false;
+        } else if (additionalDescription.length > 50 || !regex.test(additionalDescription)) {
+            setAdditionalDescriptionError('Additional description must contain only letters and spaces and cannot exceed 50 characters');
+            isValid = false;
         } else {
             setAdditionalDescriptionError('');
         }
 
         if (!productPrice) {
             setProductPriceError('Product Price must be filled in');
+            isValid = false;
         } else {
             setProductPriceError('');
         }
 
-        if (!productName || !productCategory || !productImage || !productFreshness || !additionalDescription || !productPrice) {
-            return false;
-        }
-
-        return true;
+        return isValid;
     };
-
+    
     return {
         productNameError,
         productCategoryError,
