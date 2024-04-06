@@ -1,26 +1,78 @@
-import { Box, VStack, Text, FormControl, FormLabel, Input, Select, RadioGroup, Radio, Textarea, Button } from "@chakra-ui/react";
+import { Box, VStack, Text, FormControl, FormLabel, Input, Select, RadioGroup, Radio, Textarea, Button, Alert, AlertIcon } from "@chakra-ui/react";
+import { useState } from "react";
 
 function RegistrationForm() {
+  const [formData, setFormData] = useState({
+    email:"",
+    password:"",
+    hobby:"",
+    gender:"",
+    address:"",
+  })
+
+  const [error, setError] = useState("");
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({...formData, [name] : value })
+  }
+
+  const handleGenderChange = (value) => {
+    setFormData({...formData, gender: value });
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const isInvalid = 
+      !formData.email || !formData.password || !formData.hobby || !formData.gender || !formData.address;
+    if (isInvalid) {
+      setError("please fill all the required fields");
+      return;
+    }
+
+    alert("register success");
+    console.log("data : ", formData);
+  }
+
   return (
     <>
       <Box p={8}>
         <VStack spacing={4} align="stretch">
           <Text fontSize="3xl">Member Registration</Text>
           <Text fontSize="md">Please fill this form</Text>
-          <form>
+          {
+            error && (
+              <Alert status="error">
+                <AlertIcon/>
+                {error}
+              </Alert>
+            )
+          }
+          <form onSubmit={handleSubmit}>
             <FormControl>
               <FormLabel>Email</FormLabel>
-              <Input type="email" name="email" required/>
+              <Input 
+                type="email" 
+                name="email" 
+                value={formData.email} 
+                required 
+                onChange={handleInputChange}/>
             </FormControl>
 
             <FormControl>
               <FormLabel>Password</FormLabel>
-              <Input type="password" name="password" required/>
+              <Input 
+                type="password" 
+                name="password" 
+                value={formData.password} 
+                required 
+                onChange={handleInputChange}/>
             </FormControl>
 
             <FormControl>
               <FormLabel>Hobby</FormLabel>
-              <Select name="hobby">
+              <Select name="hobby" value={formData.hobby} onChange={handleInputChange}>
                 <option value="reading">Reading</option>
                 <option value="sport">Sport</option>
                 <option value="gaming">Gaming</option>
@@ -29,7 +81,7 @@ function RegistrationForm() {
 
             <FormControl>
               <FormLabel>Gender</FormLabel>
-              <RadioGroup name="gender">
+              <RadioGroup name="gender" onChange={handleGenderChange} value={formData.gender}>
                 <Radio value="male">Male</Radio>
                 <Radio value="female" marginLeft={8}>Female</Radio>
               </RadioGroup>
@@ -37,7 +89,7 @@ function RegistrationForm() {
 
             <FormControl>
               <FormLabel>Address</FormLabel>
-                <Textarea name="address" required/>
+                <Textarea name="address" required onChange={handleInputChange} value={formData.address}/>
             </FormControl>
 
             <Box marginTop={8}>
