@@ -8,7 +8,7 @@ function Login () {
   const navigate = useNavigate();
   const isAuthenticated = localStorage.getItem("isAuthenticated");
 
-  const handleemailChange = (e) => {
+  const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
@@ -24,9 +24,15 @@ function Login () {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Validasi panjang minimal password
+    if (password.length < 8) {
+      setError('Password must be at least 8 characters long');
+      return;
+    }
   
     // Periksa manual email dan password terlebih dahulu
-    if (email === 'admin@gmail.com' && password === 'admin') {
+    if (email === 'admin@gmail.com' && password === '12345678') {
       localStorage.setItem("isAuthenticated", "true");
       navigate("/home"); 
       dataKosong(); // Setel nilai formData menjadi kosong dengan menggunakan fungsi dataKosong
@@ -71,7 +77,7 @@ function Login () {
             className="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"
             placeholder="Enter your email"
             value={email}
-            onChange={handleemailChange}
+            onChange={handleEmailChange}
             required
           />
         </div>
