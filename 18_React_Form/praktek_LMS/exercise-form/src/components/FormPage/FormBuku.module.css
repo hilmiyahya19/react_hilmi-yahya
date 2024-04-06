@@ -1,0 +1,86 @@
+.form {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px #007bff;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 2px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 2px;
+  }
+  
+  p {
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+  
+  /* Media queries untuk layar md */
+  @media (min-width: 768px) {
+    .form {
+      margin-left: 100px;
+      margin-right: 100px;
+    }
+  }
+  
+  /* Media queries untuk layar lg */
+  @media (min-width: 992px) {
+    .form {
+      margin-left: 200px;
+      margin-right: 200px;
+    }
+  }
+
+  /* Style untuk pesan kesalahan */
+.errorMessage {
+    color: red;
+    font-size: 14px;
+  }
+  
+  /* Style untuk input submit */
+input[type="submit"] {
+    margin-top: 10px;
+    margin-right: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style untuk button reset */
+  button[type="reset"] {
+    background-color: #f00;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  button[type="reset"]:hover {
+    background-color: #d00;
+  }
