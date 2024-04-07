@@ -320,24 +320,25 @@ return (
                 {/* List Product */}
                 <section className="mt-16 mb-5">
                     <div className="text-center text-black">
-                        <h2 className="text-3xl font-semibold mb-5">List Product</h2>
+                    <h2 className="text-3xl font-semibold mb-8">List Product</h2>
+                        <div className="w-full sm:w-auto overflow-x-auto">
                         <table className="table-auto mx-auto">
-                        <thead>
+                            <thead>
                             <tr>
-                                <td className="border px-4 py-2"><strong>No</strong></td>
-                                <td className="border px-4 py-2"><strong>Product Name</strong></td>
-                                <td className="border px-4 py-2"><strong>Product Category</strong></td>
-                                <td className="border px-4 py-2"><strong>Product Image</strong></td>
-                                <td className="border px-4 py-2"><strong>Product Freshness</strong></td>
-                                <td className="border px-4 py-2"><strong>Additional Description</strong></td>
-                                <td className="border px-4 py-2"><strong>Product Price</strong></td>
-                                <td className="border px-4 py-2"><strong>Hapus Data</strong></td>
-                                <td className="border px-4 py-2"><strong>Edit Data</strong></td>  
-                                <td className="border px-4 py-2"><strong>Detail</strong></td>  
+                                <th className="border px-4 py-2"><strong>No</strong></th>
+                                <th className="border px-4 py-2"><strong>Product Name</strong></th>
+                                <th className="border px-4 py-2"><strong>Product Category</strong></th>
+                                <th className="border px-4 py-2"><strong>Product Image</strong></th>
+                                <th className="border px-4 py-2"><strong>Product Freshness</strong></th>
+                                <th className="border px-4 py-2"><strong>Additional Description</strong></th>
+                                <th className="border px-4 py-2"><strong>Product Price</strong></th>
+                                <th className="border px-4 py-2"><strong>Hapus Data</strong></th>
+                                <th className="border px-4 py-2"><strong>Edit Data</strong></th>  
+                                <th className="border px-4 py-2"><strong>Detail</strong></th>  
                             </tr>
-                        </thead>
-                        <tbody>
-                        {data.map((item, index) => (
+                            </thead>
+                            <tbody>
+                            {data.map((item, index) => (
                             <tr key={item.id}>
                                 <td className="border px-4 py-2">{index + 1}</td>
                                 <td className="border px-4 py-2">{item.productName}</td>
@@ -363,9 +364,10 @@ return (
                                     </Link>
                                 </td>
                             </tr>
-                        ))}
-                        </tbody>
+                            ))}
+                            </tbody>
                         </table>
+                        </div>
                     </div>
                 </section>
 
