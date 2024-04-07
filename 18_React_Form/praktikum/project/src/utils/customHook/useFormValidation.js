@@ -13,6 +13,7 @@ const useFormValidation = (
     // Regex untuk memeriksa apakah string hanya terdiri dari huruf dan spasi
     const regex = useMemo(() => /^[A-Za-z ]*$/, []); 
 
+    // Validasi untuk memberikan umpan balik langsung kepada pengguna saat nilai input tidak valid
     useEffect(() => {
         if (productName.length > 10) {
             setProductNameError('Product name cannot exceed 10 characters');
@@ -59,6 +60,7 @@ const useFormValidation = (
         }
     }, [productImage]);
 
+    // Validasi untuk memastikan kevalidan semua input sebelum penambahan atau pembaruan data pada list product
     const validateForm = () => {
         let isValid = true;
 
@@ -105,6 +107,9 @@ const useFormValidation = (
 
         if (!productPrice) {
             setProductPriceError('Product Price must be filled in');
+            isValid = false;
+        } else if (productPrice.length > 9) {
+            setProductPriceError('Product price cannot exceed 9 characters');
             isValid = false;
         } else {
             setProductPriceError('');
