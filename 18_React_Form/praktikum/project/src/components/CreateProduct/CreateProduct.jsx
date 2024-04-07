@@ -43,6 +43,18 @@ function CreateProduct() {
         setData(data);
       }, [data]);
 
+    // Fungsi untuk mengatur nilai data menjadi kosong
+    const dataKosong = () => {
+        setProductName("");
+        setProductCategory("");
+        setProductImage("");
+        productImageRef.current.value = ''; // Reset nilai input file
+        // URL.revokeObjectURL(productImage); // Menghapus URL gambar dari memori
+        setProductFreshness("");
+        setAdditionalDescription("");
+        setProductPrice("");
+    };
+
     // tambah data
     const addData = (event) => {
         event.preventDefault(); 
@@ -78,17 +90,8 @@ function CreateProduct() {
             };
     
         setData([...data, newData]);
-
         console.log("Added item with id:", newData.id); // Console log ID data yang baru saja ditambahkan
-    
-        setProductName("");
-        setProductCategory("");
-        setProductImage(""); 
-        productImageRef.current.value = ''; // Reset nilai input file
-        // URL.revokeObjectURL(file); // Menghapus URL gambar dari memori
-        setProductFreshness("");
-        setAdditionalDescription("");
-        setProductPrice("");
+        dataKosong(); // Setel nilai data menjadi kosong dengan menggunakan fungsi dataKosong
         };
     }
 
@@ -165,16 +168,8 @@ function CreateProduct() {
           });
   
         setData(updatedData);
-  
         setEditData(null);
-        setProductName("");
-        setProductCategory("");
-        setProductImage("");
-        productImageRef.current.value = ''; // Reset nilai input file
-        // URL.revokeObjectURL(productImage); // Menghapus URL gambar dari memori
-        setProductFreshness("");
-        setAdditionalDescription("");
-        setProductPrice("");
+        dataKosong(); // Setel nilai data menjadi kosong dengan menggunakan fungsi dataKosong
         };
     };
 
@@ -213,7 +208,7 @@ return (
                     <div>
                         <h2 className="text-lg font-semibold">Detail Product</h2>
                         <div className="mt-2">
-                            <h3 htmlFor="productName" className="block mb-2">Product name</h3>
+                            <h3 htmlFor="productName" className="block mb-2">Product Name</h3>
                             <input id="productName" type="text" 
                             className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none ${productNameError ? 'focus:border-red-500 focus:ring-red-500 border-red-500' : 'focus:border-blue-300 focus:ring-blue-300'} flex-1 text-md`}
                             value={productName} onChange={(e) => setProductName(e.target.value)}
@@ -334,7 +329,7 @@ return (
                                 <th className="border px-4 py-2"><strong>Product Price</strong></th>
                                 <th className="border px-4 py-2"><strong>Hapus Data</strong></th>
                                 <th className="border px-4 py-2"><strong>Edit Data</strong></th>  
-                                <th className="border px-4 py-2"><strong>Detail</strong></th>  
+                                <th className="border px-4 py-2"><strong>Detail Data</strong></th>  
                             </tr>
                             </thead>
                             <tbody>
