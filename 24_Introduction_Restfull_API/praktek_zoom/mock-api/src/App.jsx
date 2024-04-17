@@ -43,21 +43,21 @@ function App() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl mb-4">Fetch Data with Axios</h1>
+      <h1 className="text-3xl mb-4 font-semibold">Fetch Data with Axios</h1>
       <form onSubmit={handleSubmit} className="flex flex-col mb-4">
         <input 
           type="text" 
-          placeholder="Name" 
+          placeholder="add name" 
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="input input-bordered mb-2 md:w-auto border"
+          className="py-1 input input-bordered mb-2 md:w-auto border rounded-md focus:outline-none focus:border-blue-500"
         />
         <input 
           type="number" 
-          placeholder="Age" 
+          placeholder="add age" 
           value={age}
           onChange={(e) => setAge(e.target.value)}
-          className="input input-bordered mb-2 md:w-auto border"
+          className="py-1 input input-bordered mb-2 md:w-auto border rounded-md focus:outline-none focus:border-blue-500"
         />
         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Submit
@@ -65,8 +65,8 @@ function App() {
       </form>
       {data.map((user) => (
         <div key={user.id} className="mb-4 p-4 border rounded">
-          <p className="mt-2">Name: {user.name}</p>
-          <p>Age: {user.age}</p>
+          <p className="mt-2">Name : {user.name}</p>
+          <p>Age : {user.age}</p>
           <img src={user.image} alt="User" className="mt-2 mb-4 rounded" />
           <button 
             className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
@@ -77,17 +77,17 @@ function App() {
           <form onSubmit={(e) => handleSubmitEdit(e, user.id)} className="mt-4">
             <input 
               type="text" 
-              placeholder="New name" 
+              placeholder="edit name" 
               value={nameEdit}
               onChange={(e) => setNameEdit(e.target.value)}
-              className="input input-bordered mb-2 md:w-auto border"
+              className="py-1 input input-bordered mb-2 md:w-auto border rounded-md focus:outline-none focus:border-blue-500"
             />
             <input 
               type="number" 
-              placeholder="New age" 
+              placeholder="edit age" 
               value={ageEdit}
               onChange={(e) => setAgeEdit(e.target.value)}
-              className="input input-bordered mb-2 md:w-auto border"
+              className="py-1 input input-bordered mb-2 md:w-auto border rounded-md focus:outline-none focus:border-blue-500"
             />
             <br />
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
