@@ -11,11 +11,11 @@ Ini akan membuat versi produksi untuk aplikasi kita di dalam folder build/. Ini 
 ## Run Optimized App
 Untuk menjalankan aplikasi yang optimal di lokal komputer kita,
 kita bisa menggunakan serve
-// install serve
+### install serve
 ```bash
 npm install -g serve
 ```
-// jalankan serve di lokal 
+### jalankan serve di lokal 
 ```bash
 serve -s build
 ```
