@@ -51,7 +51,7 @@ to plan ways to increase quality and effectiveness regarding, individuals, proce
 
 ## Artifact
 ### Wishlist Backlog 
-Ordered Iist of what needed to build / improve the product / software.\n
+Ordered Iist of what needed to build / improve the product / software.
 commitment : Product Goals 
 ### Working Software 
 The Result of the work in every iteration should be usable in order to provide value. 
@@ -61,4 +61,17 @@ Selected from wishlist backlog, ready to be executed. This is actionable plan fo
 commitment : Iteration Goals
 
 ## FeedBack using SPEDA
+### SITUASI 
+Jelaskan situasi yang terjadi pada saat itu.
+contoh : Pada saat presentasi ke BOD.
+### PERILAKU
+Perilaku apa yang perlu diberi feedback.
+contoh : kami menggunakan data yang salah.
+### DAMPAK 
+Apa yang akan terjadi kalo perilaku tersebut masih tetap dilakukan.
+contoh : Kepercayaan BOD akan menurun kepada tim kita.
 
+"Pada saat presentasi ke BOD, kamu menggunakan data yang salah, kalau nanti kamu lakukan terus, kepercayaan BOD akan menurun kepada tim kita”.
+
+“Great things in business are never done by one person; they're done by a team of people." 
+— Steve Job
