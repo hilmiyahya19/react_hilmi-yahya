@@ -51,8 +51,8 @@ to plan ways to increase quality and effectiveness regarding, individuals, proce
 
 ## Artifact
 ### Wishlist Backlog 
-Ordered Iist of what needed to build / improve the product / software.
-\n commitment : Product Goals 
+Ordered Iist of what needed to build / improve the product / software.\n
+commitment : Product Goals 
 ### Working Software 
 The Result of the work in every iteration should be usable in order to provide value. 
 commitment : Definition of done
