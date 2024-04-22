@@ -15,10 +15,10 @@ function App() {
       <DataFetcher name="Agus" />
       {/* Fetch berdasarkan umur */}
       <h3>Get Data By Age</h3>
-      <DataFetcher age="30" />
+      <DataFetcher age="33" />
       {/* Fetch berdasarkan jenis kelamin */}
       <h3>Get Data By Gender</h3>
-      <DataFetcher gender="male" />
+      <DataFetcher gender="Female" />
     </div>
   );
 }
