@@ -3,16 +3,32 @@ import tailwind from '/src/assets/tailwind.png'
 import article from '../../articleData';
 import Alert from '../Alert/Alert';
 import Button from '../ui/Button/Button';
-import { v4 as uuidv4 } from 'uuid'; 
+// import { v4 as uuidv4 } from 'uuid'; 
 import Modal from '../ui/Modal/Modal';
 import useFormValidation from '../../utils/customHook/useFormValidation';
 import { Link } from 'react-router-dom';
 import productData from './productData'; 
+import axios from 'axios';
 
 function CreateProduct() {
+    // productData
+    const [data, setData] = useState(productData);
+    useEffect (() => {
+        setData(data);
+    }, [data]);
+
     useEffect(() => {
         console.log("Data produk:", productData); // memastikan data produk tersedia
         setData(productData);
+    }, []);
+    
+    async function fetchData() {
+        const response = await axios.get(`https://660fae7f356b87a55c520818.mockapi.io/products`);
+        setData(response.data);
+    }
+    
+    useEffect(() => {
+        fetchData();
     }, []);
     
     const [productName, setProductName] = useState('');
@@ -37,12 +53,6 @@ function CreateProduct() {
         productName, productPrice, additionalDescription, productCategory, productFreshness, productImage
         );
 
-    // productData
-    const [data, setData] = useState(productData);
-    useEffect (() => {
-        setData(data);
-      }, [data]);
-
     // Fungsi untuk mengatur nilai data menjadi kosong
     const dataKosong = () => {
         setProductName("");
@@ -56,65 +66,79 @@ function CreateProduct() {
     };
 
     // tambah data
-    const addData = (event) => {
-        event.preventDefault(); 
+    const addData = async (event) => { // Ubah menjadi async function
+    event.preventDefault(); 
 
-        const isValid = validateForm(
+    const isValid = validateForm(
+        productName,
+        productCategory,
+        productImage,
+        productFreshness,
+        additionalDescription,
+        productPrice
+    );
+
+    if (!isValid) {
+        alert('Please enter valid data');
+        return;
+    }
+
+    // Menyimpan objek file gambar di state productImage
+    const file = productImage;
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = async () => {
+        const base64String = reader.result;
+        const newData = {
             productName,
             productCategory,
-            productImage,
+            productImage: base64String, 
             productFreshness,
             additionalDescription,
-            productPrice
-        );
-
-        if (!isValid) {
-            alert('Please enter valid data');
-            return;
-        }
-
-        // Menyimpan objek file gambar di state productImage
-        const file = productImage;
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            const base64String = reader.result;
-            const newData = {
-                id: uuidv4(), 
-                productName,
-                productCategory,
-                productImage:base64String, 
-                productFreshness,
-                additionalDescription,
-                productPrice,
-            };
-    
-        setData([...data, newData]);
-        console.log("Added item with id:", newData.id); // Console log ID data yang baru saja ditambahkan
-        dataKosong(); // Setel nilai data menjadi kosong dengan menggunakan fungsi dataKosong
+            productPrice,
         };
+
+        try {
+            // Kirim permintaan POST ke REST API untuk menyimpan data
+            const response = await axios.post('https://660fae7f356b87a55c520818.mockapi.io/products', newData);
+            console.log("Added item with id:", response.data.id); // Console log ID data yang baru saja ditambahkan
+            dataKosong(); // Setel nilai data menjadi kosong dengan menggunakan fungsi dataKosong
+            alert('Data berhasil disimpan');
+            fetchData(); // Panggil fungsi fetchData untuk memperbarui data yang ditampilkan
+        } catch (error) {
+            console.error('Error adding data:', error);
+            alert('Failed to add data');
+        }
+    };
     }
 
     // hapus data
     const [showModal, setShowModal] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null); // State untuk menyimpan item yang dipilih
 
-    const deleteData = (id) => { 
+    const deleteData = async (id) => { 
+        try {
+            // Kirim permintaan DELETE ke REST API untuk menghapus data
+            await axios.delete(`https://660fae7f356b87a55c520818.mockapi.io/products/${id}`);
+            console.log("Deleted item with id:", id); // Console log ID data yang baru saja dihapus
+            alert('Data berhasil dihapus');
+            fetchData(); // Panggil fungsi fetchData untuk memperbarui data yang ditampilkan
+    }   catch (error) {
+            console.error('Error deleting data:', error);
+            alert('Failed to delete data');
+        }
+    }
+
+    const confirmDelete = (id) => {
         const selectedItem = data.find(item => item.id === id); // Menyimpan item yang dipilih
         setSelectedItem(selectedItem); // Menyimpan item yang dipilih ke dalam state
         setShowModal(true); // Menampilkan modal konfirmasi saat tombol delete di klik
     }
 
-    const confirmDelete = (id) => {
-        const newData = data.filter((item) => item.id !== id); 
-        setData(newData);
-        console.log("Deleted item with id:", id); // Console log ID data yang baru saja dihapus
-        setShowModal(false); // Menutup modal setelah konfirmasi
-    }
-
     const cancelDelete = () => {
         setShowModal(false); // Menutup modal jika pengguna memilih untuk tidak menghapus
     }
+
 
     // edit data
     const [editData, setEditData] = useState(null);
@@ -130,48 +154,46 @@ function CreateProduct() {
         setProductPrice(editItem.productPrice);
     }
 
-    // update data
-    const updateData = (event) => {
-        event.preventDefault();
-        
-        const isValid = validateForm(
+    const updateData = async (id) => { // Ubah menjadi async function
+    const isValid = validateForm(
+        productName,
+        productCategory,
+        productImage,
+        productFreshness,
+        additionalDescription,
+        productPrice
+    );
+
+    if (!isValid) {
+        alert('Please enter valid data');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(productImage);
+    reader.onloadend = async () => {
+        const base64String = reader.result;
+        const updatedData = {
             productName,
             productCategory,
-            productImage,
+            productImage: base64String, // Menggunakan gambar baru
             productFreshness,
             additionalDescription,
-            productPrice
-        );
-
-        if (!isValid) {
-            alert('Please enter valid data');
-            return;
-        }
-
-        const reader = new FileReader();
-        reader.readAsDataURL(productImage);
-        reader.onloadend = () => {
-            const base64String = reader.result;
-            const updatedData = data.map(item => {
-                if (item.id === editData.id) {
-                    return {
-                        ...item,
-                        productName,
-                        productCategory,
-                        productImage: base64String, // Menggunakan gambar baru
-                        productFreshness,
-                        additionalDescription,
-                        productPrice,
-                    };
-                }
-            return item;
-          });
-  
-        setData(updatedData);
-        setEditData(null);
-        dataKosong(); // Setel nilai data menjadi kosong dengan menggunakan fungsi dataKosong
+            productPrice,
         };
+
+        try {
+            // Kirim permintaan PUT ke REST API untuk mengupdate data
+            await axios.put(`https://660fae7f356b87a55c520818.mockapi.io/products/${id}`, updatedData);
+            console.log("Updated item with id:", id); // Console log ID data yang baru saja diupdate
+            alert('Data berhasil diupdate');
+            fetchData(); // Panggil fungsi fetchData untuk memperbarui data yang ditampilkan
+        } catch (error) {
+            console.error('Error updating data:', error);
+            alert('Failed to update data');
+        }
     };
+    }
 
     // ganti bahasa
     const [language, setLanguage] = useState('en'); 
