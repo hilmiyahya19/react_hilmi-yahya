@@ -1,35 +1,27 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import tailwind from '/src/assets/tailwind.png'
 import article from '../../articleData';
 import Alert from '../Alert/Alert';
 import Button from '../ui/Button/Button';
-// import { v4 as uuidv4 } from 'uuid'; 
 import Modal from '../ui/Modal/Modal';
 import useFormValidation from '../../utils/customHook/useFormValidation';
 import { Link } from 'react-router-dom';
-import productData from './productData'; 
 import axios from 'axios';
 
 function CreateProduct() {
-    // productData
-    const [data, setData] = useState(productData);
+    const [data, setData] = useState([]);
     useEffect (() => {
-        setData(data);
-    }, [data]);
-
-    useEffect(() => {
-        console.log("Data produk:", productData); // memastikan data produk tersedia
-        setData(productData);
+        fetchData();
     }, []);
     
     async function fetchData() {
-        const response = await axios.get(`https://660fae7f356b87a55c520818.mockapi.io/products`);
-        setData(response.data);
+        try {
+            const response = await axios.get('https://660fae7f356b87a55c520818.mockapi.io/products');
+            setData(response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     }
-    
-    useEffect(() => {
-        fetchData();
-    }, []);
     
     const [productName, setProductName] = useState('');
     const [productCategory, setProductCategory] = useState('');
@@ -37,8 +29,6 @@ function CreateProduct() {
     const [productFreshness, setProductFreshness] = useState("");
     const [additionalDescription, setAdditionalDescription] = useState('');
     const [productPrice, setProductPrice] = useState('');
-
-    const productImageRef = useRef(null);
 
     // useFormValidation
     const {
@@ -58,15 +48,13 @@ function CreateProduct() {
         setProductName("");
         setProductCategory("");
         setProductImage("");
-        productImageRef.current.value = ''; // Reset nilai input file
-        // URL.revokeObjectURL(productImage); // Menghapus URL gambar dari memori
         setProductFreshness("");
         setAdditionalDescription("");
         setProductPrice("");
     };
 
     // tambah data
-    const addData = async (event) => { // Ubah menjadi async function
+    const addData = async (event) => { 
     event.preventDefault(); 
 
     const isValid = validateForm(
@@ -83,33 +71,25 @@ function CreateProduct() {
         return;
     }
 
-    // Menyimpan objek file gambar di state productImage
-    const file = productImage;
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = async () => {
-        const base64String = reader.result;
+    try {
+        // Kirim permintaan POST ke REST API untuk menyimpan data
         const newData = {
             productName,
             productCategory,
-            productImage: base64String, 
+            productImage, // Gunakan URL gambar langsung
             productFreshness,
             additionalDescription,
             productPrice,
         };
-
-        try {
-            // Kirim permintaan POST ke REST API untuk menyimpan data
-            const response = await axios.post('https://660fae7f356b87a55c520818.mockapi.io/products', newData);
-            console.log("Added item with id:", response.data.id); // Console log ID data yang baru saja ditambahkan
-            dataKosong(); // Setel nilai data menjadi kosong dengan menggunakan fungsi dataKosong
-            alert('Data berhasil disimpan');
-            fetchData(); // Panggil fungsi fetchData untuk memperbarui data yang ditampilkan
-        } catch (error) {
-            console.error('Error adding data:', error);
-            alert('Failed to add data');
-        }
-    };
+        const response = await axios.post('https://660fae7f356b87a55c520818.mockapi.io/products', newData);
+        console.log("Added item with id:", response.data.id);
+        dataKosong();
+        alert('Data berhasil disimpan');
+        fetchData();
+    } catch (error) {
+        console.error('Error adding data:', error);
+        alert('Failed to add data');
+    }
     }
 
     // hapus data
@@ -154,7 +134,9 @@ function CreateProduct() {
         setProductPrice(editItem.productPrice);
     }
 
-    const updateData = async (id) => { // Ubah menjadi async function
+    const updateData = async (id) => { 
+    // Cetak nilai id ke konsol untuk memeriksa nilainya
+    console.log('Nilai id:', id);
     const isValid = validateForm(
         productName,
         productCategory,
@@ -169,30 +151,27 @@ function CreateProduct() {
         return;
     }
 
-    const reader = new FileReader();
-    reader.readAsDataURL(productImage);
-    reader.onloadend = async () => {
-        const base64String = reader.result;
+    try {
+        // Simpan URL gambar langsung ke dalam updatedData
         const updatedData = {
             productName,
             productCategory,
-            productImage: base64String, // Menggunakan gambar baru
+            productImage, // Gunakan URL gambar langsung
             productFreshness,
             additionalDescription,
             productPrice,
         };
 
-        try {
-            // Kirim permintaan PUT ke REST API untuk mengupdate data
-            await axios.put(`https://660fae7f356b87a55c520818.mockapi.io/products/${id}`, updatedData);
-            console.log("Updated item with id:", id); // Console log ID data yang baru saja diupdate
-            alert('Data berhasil diupdate');
-            fetchData(); // Panggil fungsi fetchData untuk memperbarui data yang ditampilkan
-        } catch (error) {
-            console.error('Error updating data:', error);
-            alert('Failed to update data');
-        }
-    };
+        // Kirim permintaan PUT ke REST API untuk mengupdate data
+        await axios.put(`https://660fae7f356b87a55c520818.mockapi.io/products/${id}`, updatedData);
+        console.log("Updated item with id:", id);
+        dataKosong();
+        alert('Data berhasil diupdate');
+        fetchData();
+    } catch (error) {
+        console.error('Error updating data:', error);
+        alert('Failed to update data');
+    }
     }
 
     // ganti bahasa
@@ -254,10 +233,11 @@ return (
                             {productCategoryError && <small className="text-red-500">{productCategoryError}</small>}
                         </div>
                         <div className="mt-4">
-                            <h3 htmlFor="productImage" className="block mb-2">Image of Product</h3>
-                            <input id="productImage" type="file" className="form-input mt-1 block w-full" 
-                            onChange={(e) => setProductImage(e.target.files[0])} ref={productImageRef}/>
-                            {/* onChange={(e) => setProductImage(URL.createObjectURL(e.target.files[0]))} */}
+                            <h3 htmlFor="productImage" className="block mb-2">Product Image</h3>
+                            <input id="productImage" type="text" 
+                            className={`border-gray-300 border rounded-lg w-full py-1 focus:outline-none ${productImageError ? 'focus:border-red-500 focus:ring-red-500 border-red-500' : 'focus:border-blue-300 focus:ring-blue-300'} flex-1 text-md`}
+                            value={productImage} onChange={(e) => setProductImage(e.target.value)}
+                            />
                             {productImageError && <small className="text-red-500">{productImageError}</small>}
                         </div>
                         <div className="mt-5">
@@ -327,7 +307,11 @@ return (
                 <section className="mt-14 mb-5">
                     <div className="text-center">
                     {editData ? (
-                        <Button className='mt-3' variant='update' type='button' onClick={updateData}>Update Data</Button>
+                        <Button
+                        className='mt-3'
+                        variant='update'
+                        type='button'
+                        onClick={() => updateData(editData.id)}>Update Data</Button>
                     ) : (
                         <Button className='mt-3' variant='primary' type='button' onClick={addData}>Tambah Data</Button>
                     )}

@@ -10,15 +10,16 @@ const useFormValidation = (
     const [additionalDescriptionError, setAdditionalDescriptionError] = useState('');
     const [productPriceError, setProductPriceError] = useState('');
 
-    // Regex untuk memeriksa apakah string hanya terdiri dari huruf dan spasi
-    const regex = useMemo(() => /^[A-Za-z ]*$/, []); 
+    // Regex untuk memeriksa apakah string hanya terdiri dari huruf, angka, dan spasi
+const regex = useMemo(() => /^[A-Za-z0-9 ]*$/, []);
+
 
     // Validasi untuk memberikan umpan balik langsung kepada pengguna saat nilai input tidak valid
     useEffect(() => {
-        if (productName.length > 10) {
-            setProductNameError('Product name cannot exceed 10 characters');
+        if (productName.length > 30) {
+            setProductNameError('Product name cannot exceed 30 characters');
         } else if (!regex.test(productName)) {
-            setProductNameError('Product name must contain only letters and spaces');
+            setProductNameError('Product name must contain only letters, numbers, and spaces');
         } else {
             setProductNameError('');
         }
@@ -33,14 +34,12 @@ const useFormValidation = (
     }, [productPrice]);
 
     useEffect(() => {
-        if (additionalDescription.length > 50) {
-            setAdditionalDescriptionError('Additional description cannot exceed 50 characters');
-        } else if (!regex.test(additionalDescription)) {
-            setAdditionalDescriptionError('Additional description must contain only letters and spaces');
+        if (additionalDescription.length > 100) {
+            setAdditionalDescriptionError('Additional description cannot exceed 100 characters');
         } else {
             setAdditionalDescriptionError('');
         }
-    }, [additionalDescription, regex]);
+    }, [additionalDescription]);
     
     useEffect(() => {
         if (productCategory) {
@@ -67,8 +66,8 @@ const useFormValidation = (
         if (!productName) {
             setProductNameError('Product Name must be filled in');
             isValid = false;
-        } else if (productName.length > 10 || !regex.test(productName)) {
-            setProductNameError('Product name must contain only letters and spaces and cannot exceed 10 characters');
+        } else if (productName.length > 30 || !regex.test(productName)) {
+            setProductNameError('Product name must contain only letters, numbers, spaces and cannot exceed 30 characters');
             isValid = false;
         } else {
             setProductNameError('');
@@ -98,8 +97,8 @@ const useFormValidation = (
         if (!additionalDescription) {
             setAdditionalDescriptionError('Additional Description must be filled in');
             isValid = false;
-        } else if (additionalDescription.length > 50 || !regex.test(additionalDescription)) {
-            setAdditionalDescriptionError('Additional description must contain only letters and spaces and cannot exceed 50 characters');
+        } else if (additionalDescription.length > 100) {
+            setAdditionalDescriptionError('Additional description cannot exceed 100 characters');
             isValid = false;
         } else {
             setAdditionalDescriptionError('');
