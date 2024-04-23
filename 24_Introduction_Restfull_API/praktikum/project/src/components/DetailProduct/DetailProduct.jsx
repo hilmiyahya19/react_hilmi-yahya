@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'; // Import PropTypes
 import { useParams, useNavigate } from 'react-router-dom';
 import Button from '../ui/Button/Button';
 
-function DetailProduct({ productData }) {
+function DetailProduct({ data }) {
   // Mengambil ID produk dari URL menggunakan useParams
   const { id } = useParams();
 
@@ -13,7 +13,7 @@ function DetailProduct({ productData }) {
   };
 
   // Dapatkan data produk berdasarkan ID dari prop productData
-  const selectedProduct = productData.find(product => product.id === id);
+  const selectedProduct = data.find(product => product.id === id);
 
   // Pastikan produk ditemukan sebelum menampilkan detailnya
   if (!selectedProduct) {
@@ -54,7 +54,7 @@ function DetailProduct({ productData }) {
 
 // Define prop types for DetailProduct
 DetailProduct.propTypes = {
-  productData: PropTypes.arrayOf(PropTypes.shape({
+  data: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     productName: PropTypes.string.isRequired,
     productCategory: PropTypes.string.isRequired,
@@ -64,5 +64,6 @@ DetailProduct.propTypes = {
     productPrice: PropTypes.number.isRequired,
   })).isRequired,
 };
+
 
 export default DetailProduct;

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
   const github = `https://github.com/hilmiyahya19`;
   const instagram = `https://instagram.com/hyhlmyhy?igshid=MzRlODBiNWFlZA==`; 
@@ -36,7 +38,9 @@ function Footer() {
           <p className="text-white mb-2">Email: example@example.com</p>
           <section className="">
             <div className="text-blue-800 font-bold">
-              <button className="btn-primary px-5 py-2 bg-white rounded-md hover:bg-blue-100">Contact</button>
+              <Link to="/contacts">
+                <button className="btn-primary px-5 py-2 bg-white rounded-md hover:bg-blue-100">Contact</button>
+              </Link>
             </div>
           </section>
         </div>

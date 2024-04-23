@@ -165,6 +165,7 @@ function CreateProduct() {
         // Kirim permintaan PUT ke REST API untuk mengupdate data
         await axios.put(`https://660fae7f356b87a55c520818.mockapi.io/products/${id}`, updatedData);
         console.log("Updated item with id:", id);
+        setEditData(null); // ketika data berhasil diupdate, button update data langsung berubah menjadi tambah data
         dataKosong();
         alert('Data berhasil diupdate');
         fetchData();
