@@ -185,11 +185,12 @@ function ContactMe() {
       </section>
 
       {/* table hasil submit form */}
-      <div className="flex justify-center mb-20">
+      <div className="mb-20">
         <section>
           {isSubmitted && (   
             <div className="text-center text-black">
               <h2 className="text-3xl font-semibold mb-5">List Message</h2>
+              <div className="w-full sm:w-auto overflow-x-auto">
                 <table className="table-auto mx-auto">
                   <thead>
                     <tr>
@@ -212,6 +213,7 @@ function ContactMe() {
                     ))}
                   </tbody>
                 </table>
+              </div>  
             </div>
           )}
         </section>
