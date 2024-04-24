@@ -92,34 +92,6 @@ function CreateProduct() {
     }
     }
 
-    // hapus data
-    const [showModal, setShowModal] = useState(false);
-    const [selectedItem, setSelectedItem] = useState(null); // State untuk menyimpan item yang dipilih
-
-    const deleteData = async (id) => { 
-        try {
-            // Kirim permintaan DELETE ke REST API untuk menghapus data
-            await axios.delete(`https://660fae7f356b87a55c520818.mockapi.io/products/${id}`);
-            console.log("Deleted item with id:", id); // Console log ID data yang baru saja dihapus
-            alert('Data berhasil dihapus');
-            fetchData(); // Panggil fungsi fetchData untuk memperbarui data yang ditampilkan
-    }   catch (error) {
-            console.error('Error deleting data:', error);
-            alert('Failed to delete data');
-        }
-    }
-
-    const confirmDelete = (id) => {
-        const selectedItem = data.find(item => item.id === id); // Menyimpan item yang dipilih
-        setSelectedItem(selectedItem); // Menyimpan item yang dipilih ke dalam state
-        setShowModal(true); // Menampilkan modal konfirmasi saat tombol delete di klik
-    }
-
-    const cancelDelete = () => {
-        setShowModal(false); // Menutup modal jika pengguna memilih untuk tidak menghapus
-    }
-
-
     // edit data
     const [editData, setEditData] = useState(null);
     const handleEditData = (id, e) => { 
@@ -173,6 +145,33 @@ function CreateProduct() {
         console.error('Error updating data:', error);
         alert('Failed to update data');
     }
+    }
+
+    // hapus data
+    const [showModal, setShowModal] = useState(false);
+    const [selectedItem, setSelectedItem] = useState(null); // State untuk menyimpan item yang dipilih
+  
+    const deleteData = (id) => { 
+        const selectedItem = data.find(item => item.id === id); // Menyimpan item yang dipilih
+        setSelectedItem(selectedItem); // Menyimpan item yang dipilih ke dalam state
+        setShowModal(true); // Menampilkan modal konfirmasi saat tombol delete di klik
+    }
+  
+    const confirmDelete = async (id) => {
+        try {
+            // Kirim permintaan DELETE ke REST API untuk menghapus data
+            await axios.delete(`https://660fae7f356b87a55c520818.mockapi.io/products/${id}`);
+            console.log("Deleted item with id:", id); // Console log ID data yang baru saja dihapus
+            alert('Data berhasil dihapus');
+            fetchData(); // Panggil fungsi fetchData untuk memperbarui data yang ditampilkan
+        } catch (error) {
+            console.error('Error deleting data:', error);
+            alert('Failed to delete data');
+        } 
+    }
+  
+    const cancelDelete = () => {
+        setShowModal(false); // Menutup modal jika pengguna memilih untuk tidak menghapus
     }
 
     // ganti bahasa

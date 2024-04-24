@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Button from '../ui/Button/Button';
 
 function DetailProduct({ data }) {
+  console.log(data);
   // Mengambil ID produk dari URL menggunakan useParams
   const { id } = useParams();
 
