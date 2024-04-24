@@ -127,11 +127,11 @@ function ContactMe() {
   return (
     <>
       <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 mx-auto mt-3 md:mt-5 lg:mt-10 mb-5">
-        <div className="md:col-span-1 lg:col-span-1 m-5 sm:m-5 md:m-10 lg:m-20 pt-5">
+        <div className="md:col-span-1 lg:col-span-1 m-5 sm:m-5 md:m-10 lg:m-20 pt-5 md:pl-5 lg:pl-24">
           <h1 className="text-4xl font-bold mb-6">Contact Me</h1>
           <p className="text-md">Need to get in touch with us? Either fill out the form with your inquiry or find the department email you would like to contact below</p>
         </div>
-        <div className="md:col-span-1 lg:col-span-1 m-5 sm:m-5 md:m-10 lg:m-20">
+        <div className="md:col-span-1 lg:col-span-1 m-5 sm:m-5 md:m-10 lg:m-20 md:pr-5 lg:pr-24">
           <form onSubmit={handleSubmit}>
             <div className="flex flex-wrap">
               <div className="w-full lg:w-1/2">
