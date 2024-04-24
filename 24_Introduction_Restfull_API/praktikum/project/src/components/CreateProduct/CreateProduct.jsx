@@ -154,15 +154,21 @@ function CreateProduct() {
     const deleteData = (id) => { 
         const selectedItem = data.find(item => item.id === id); // Menyimpan item yang dipilih
         setSelectedItem(selectedItem); // Menyimpan item yang dipilih ke dalam state
+    }
+
+    const handleDeleteData = (id) => {
+        deleteData(id);
         setShowModal(true); // Menampilkan modal konfirmasi saat tombol delete di klik
     }
   
-    const confirmDelete = async (id) => {
+    const confirmDelete = async (id, e) => {
+        e.preventDefault();
         try {
             // Kirim permintaan DELETE ke REST API untuk menghapus data
             await axios.delete(`https://660fae7f356b87a55c520818.mockapi.io/products/${id}`);
             console.log("Deleted item with id:", id); // Console log ID data yang baru saja dihapus
             alert('Data berhasil dihapus');
+            setShowModal(false); // Tutup modal setelah penghapusan data selesai
             fetchData(); // Panggil fungsi fetchData untuk memperbarui data yang ditampilkan
         } catch (error) {
             console.error('Error deleting data:', error);
@@ -298,7 +304,7 @@ return (
                         <h2 className="text-xl font-semibold">apakah anda yakin ingin menghapus data ini?</h2>
                         <div className="mt-4">
                             <Button className='mx-1' variant="close" onClick={cancelDelete}>Tidak</Button>
-                            <Button className='mx-1' variant="delete" onClick={() => confirmDelete(selectedItem.id)}>Ya</Button>      
+                            <Button className='mx-1' variant="delete" onClick={(e) => confirmDelete(selectedItem.id, e)}>Ya</Button>      
                         </div>
                     </div>
                 </Modal>
@@ -353,7 +359,7 @@ return (
                                 <td className="border px-4 py-2">{item.additionalDescription}</td>
                                 <td className="border px-4 py-2">{item.productPrice}</td>
                                 <td>
-                                    <Button variant='delete' onClick={() => deleteData(item.id)} type='button'>Hapus Data</Button>
+                                    <Button variant='delete' onClick={() => handleDeleteData(item.id)} type='button'>Hapus Data</Button>
                                 </td>
                                 <td>
                                     <Button variant='edit' onClick={(e) => handleEditData(item.id, e)}>Edit Data</Button>
