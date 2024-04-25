@@ -1,97 +1,83 @@
 import { useEffect, useState } from "react";
 
 function ContactMe() {
-  // firt name
+  const [messageList, setMessageList] = useState([]);
   const [firstName, setFirstName] = useState('');
-  const handleChangeFirstName = (event) => {
-    setFirstName(event.target.value)
-  }
   const [firstNameError, setFirstNameError] = useState('');
-  useEffect(() => {
-    if (firstName.length > 10) {
-      setFirstNameError('first name cannot exceed 10 characters');
-  } else {
-      setFirstNameError('');
-  }
-  }, [firstName])
-
-  // last name
   const [lastName, setLastName] = useState('');
-  const handleChangeLastName = (event) => {
-    setLastName(event.target.value)
-  }
   const [lastNameError, setLastNameError] = useState('');
-  useEffect(() => {
-    if (lastName.length > 10) {
-      setLastNameError('last name cannot exceed 10 characters');
-  } else {
-      setLastNameError('');
-  }
-  }, [lastName])
-
-  // email
   const [email, setEmail] = useState('');
-  const handleChangeEmail = (event) => {
-    setEmail(event.target.value)
-  }
   const [emailError, setEmailError] = useState('');
-  useEffect(() => {
-    if (email.length > 30) {
-      setEmailError('email cannot exceed 30 characters');
-  } else {
-      setEmailError('');
-  }
-  }, [email])
-
-  // description
   const [description, setDescription] = useState('');
-  const handleChangeDescription = (event) => {
-    setDescription(event.target.value)
-  }
   const [descriptionError, setDescriptionError] = useState('');
-  useEffect(() => {
-    if (description.length > 90) {
-      setDescriptionError('description cannot exceed 90 characters');
-  } else {
-      setDescriptionError('');
-  }
-  }, [description])
-  
-  
-  // Sequence Number
   const [sequenceNumber, setSequenceNumber] = useState(1);
 
+  useEffect(() => {
+    const storedMessages = JSON.parse(localStorage.getItem('messages'));
+    if (storedMessages) {
+      setMessageList(storedMessages);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('messages', JSON.stringify(messageList));
+  }, [messageList]);
+
+  const handleChangeFirstName = (event) => {
+    setFirstName(event.target.value);
+  }
+
+  const handleChangeLastName = (event) => {
+    setLastName(event.target.value);
+  }
+
+  const handleChangeEmail = (event) => {
+    setEmail(event.target.value);
+  }
+
+  const handleChangeDescription = (event) => {
+    setDescription(event.target.value);
+  }
+
   // Submit
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [messageList, setMessageList] = useState([]);
-  const messageObject = {
-      firstNameName: "",
-      lastName: "",
-      email: "",
-      description: "",
-    };
   const handleSubmit = (event) => {
       event.preventDefault();
       if (!firstName) {
           setFirstNameError('First Name must be filled in');
+      } else if (firstName.length > 10) {
+        setFirstNameError('First Name cannot exceed 10 characters');
+        console.log('First Name cannot exceed 10 characters');
+        return;
       } else {
           setFirstNameError('');
       }
 
       if (!lastName) {
           setLastNameError('Last Name must be filled in');
+      } else if (lastName.length > 10) {
+        setLastNameError('Last Name cannot exceed 10 characters');
+        console.log('Last Name cannot exceed 10 characters');
+        return;
       } else {
           setLastNameError('');
       }
 
       if (!email) {
           setEmailError('Email must be filled in');
+      } else if (email.length > 30) {
+        setEmailError('Email cannot exceed 30 characters');
+        console.log('Email cannot exceed 30 characters');
+        return;
       } else {
           setEmailError('');
       }
 
       if (!description) {
           setDescriptionError('Description must be filled in');
+      } else if (description.length > 90) {
+          setDescriptionError('Description cannot exceed 90 characters');
+          console.log('Description cannot exceed 90 characters');
+          return;
       } else {
           setDescriptionError('');
       }
@@ -101,40 +87,40 @@ function ContactMe() {
           return;
       }
 
+      // Buat objek pesan baru
       const newMessage = {
-          ...messageObject,
-          sequenceNumber: sequenceNumber, 
-          firstName,
-          lastName,
-          email,
-          description,
-        };
+        sequenceNumber: sequenceNumber,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        description: description,
+      };
 
+      // Update messageList dengan pesan baru
       setMessageList([...messageList, newMessage]);
 
-        // Clear form fields after submission
+        // Reset form setelah submit
         setSequenceNumber(sequenceNumber + 1);
         setFirstName("");
         setLastName("");
         setEmail("");
         setDescription("");
 
-      // Set isSubmitted to true when all fields are filled
-      setIsSubmitted(true);
       console.log('Submit clicked');
   };
   
+
   return (
     <>
-      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5 mx-auto mt-3 md:mt-5 lg:mt-10 mb-5">
-        <div className="md:col-span-1 lg:col-span-1 m-5 sm:m-5 md:m-10 lg:m-20 pt-5 md:pl-5 lg:pl-24">
+      <section className="grid lg:grid-cols-2 md:grid-cols-2 gap-2 mx-auto mt-3 md:mt-5 lg:mt-10 mb-5">
+        <div className="m-5 sm:m-5 md:m-10 lg:m-20 pt-5 md:pl-5 lg:pl-24">
           <h1 className="text-4xl font-bold mb-6">Contact Me</h1>
           <p className="text-md">Need to get in touch with us? Either fill out the form with your inquiry or find the department email you would like to contact below</p>
         </div>
-        <div className="md:col-span-1 lg:col-span-1 m-5 sm:m-5 md:m-10 lg:m-20 md:pr-5 lg:pr-24">
+        <div className="m-5 sm:m-5 md:m-10 lg:m-20 md:pr-5 lg:pr-24">
           <form onSubmit={handleSubmit}>
-            <div className="flex flex-wrap">
-              <div className="w-full lg:w-1/2">
+            <div className="grid lg:grid-cols-2">
+              <div className="w-full">
                 <div className="mt-2">
                   <h3 htmlFor="firstName" className="block mb-2">First Name</h3>
                   <input id="firstName" type="text" 
@@ -144,7 +130,7 @@ function ContactMe() {
                     {firstNameError && <small className="text-red-500">{firstNameError}</small>}
                 </div>
               </div>
-              <div className="w-full lg:w-1/2">
+              <div className="w-full">
                 <div className="mt-2">
                   <h3 htmlFor="lastName" className="block mb-2">Last Name</h3>
                   <input id="lastName" type="text" 
@@ -187,7 +173,6 @@ function ContactMe() {
       {/* table hasil submit form */}
       <div className="mb-20">
         <section>
-          {isSubmitted && (   
             <div className="text-center text-black">
               <h2 className="text-3xl font-semibold mb-5">List Message</h2>
               <div className="w-full sm:w-auto overflow-x-auto">
@@ -215,7 +200,6 @@ function ContactMe() {
                 </table>
               </div>  
             </div>
-          )}
         </section>
       </div>
     </>
