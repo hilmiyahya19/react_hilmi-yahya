@@ -1,5 +1,8 @@
 # How We Start
-To get API we can use public API for dummy data or example endpoint. Sometimes called a fake API, A Mock API is when you build an API that returns the desired data. 
+To get API we can use public API for dummy data or example endpoint. 
+
+Sometimes called a fake API, A Mock API is when you build an API that returns the desired data. 
+
 In summary, the benefits of mock API are: 
 - Frontend mobile and back-end developers can work simultaneously 
 - Fast feedback loop 
