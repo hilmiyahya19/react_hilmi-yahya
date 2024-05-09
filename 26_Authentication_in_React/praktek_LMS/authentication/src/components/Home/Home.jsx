@@ -3,10 +3,20 @@ import { Link } from "react-router-dom"
 function Home() {
   return (
     <>
-      <h1>Home</h1>
-      <Link to="/login">Login</Link>
-      <br />
-      <Link to="/register">Register</Link>
+      <h1>Welcome to Home Page</h1>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/register">Register</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">Dashboard (harus login untuk bisa masuk)</Link>
+          </li>
+        </ul>
+      </nav>
     </>
   )
 }
